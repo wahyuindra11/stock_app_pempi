@@ -176,19 +176,19 @@ class ProductKeluarController extends Controller
     public function exportProductKeluarAll()
     {
         $product_keluar = Product_Keluar::all();
-        $pdf = PDF::loadView('product_keluar.productKeluarAllPDF',compact('product_keluar'));
-        return $pdf->download('product_keluar.pdf');
-    }
+        $timestamp = now()->format('Y-m-d_H-i-s');
 
-    public function exportProductKeluar($id)
-    {
-        $product_keluar = Product_Keluar::findOrFail($id);
-        $pdf = PDF::loadView('product_keluar.productKeluarPDF', compact('product_keluar'));
-        return $pdf->download($product_keluar->id.'_product_keluar.pdf');
+        $pdf = PDF::loadView('product_keluar.productKeluarAllPDF',compact('product_keluar'));
+        $filename = 'product_keluar_' . $timestamp . '.pdf';
+
+        return $pdf->download($filename);
     }
 
     public function exportExcel()
     {
-        return (new ExportProdukKeluar)->download('product_keluar.xlsx');
+        $timestamp = now()->format('Y-m-d_H-i-s');
+
+        $filename = 'product_keluar_' . $timestamp . '.xlsx';
+        return (new ExportProdukKeluar)->download($filename);
     }
 }

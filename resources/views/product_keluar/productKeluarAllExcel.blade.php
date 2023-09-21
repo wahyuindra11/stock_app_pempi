@@ -58,7 +58,7 @@
             <td>{{ $p->product->nama }}</td>
             <td>{{ $p->customer->nama }}</td>
             <td>{{ $p->qty }}</td>
-            <td>{{ $i->nomer_spb }}</td>
+            <td>{{ $p->nomer_spb }}</td>
             <td>{{ $p->tanggal }}</td>
             <td>{{ $p->keterangan }}</td>
         </tr>

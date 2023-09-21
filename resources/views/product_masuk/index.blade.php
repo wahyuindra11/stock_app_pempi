@@ -49,51 +49,6 @@
         <!-- /.box-body -->
     </div>
 
-    <div class="box col-md-6">
-
-        <div class="box-header">
-            <h3 class="box-title">Export Invoice</h3>
-        </div>
-
-    {{-- <div class="box-header">--}}
-    {{--<a onclick="addForm()" class="btn btn-primary" >Add Products Out</a>--}}
-    {{--<a href="{{ route('exportPDF.productKeluarAll') }}" class="btn btn-danger">Export PDF</a>--}}
-    {{--<a href="{{ route('exportExcel.productKeluarAll') }}" class="btn btn-success">Export Excel</a>--}}
-    {{--</div> --}}
-
-    <!-- /.box-header -->
-        <div class="box-body">
-            <table id="invoice" class="table table-striped">
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Material</th>
-                    <th>Supplier</th>
-                    <th>QTY</th>
-                    <th>Tanggal Pembelian</th>
-                    <th>Harga Beli</th>
-                    <th>Export Invoice</th>
-                </tr>
-                </thead>
-
-                @foreach($invoice_data as $i)
-                    <tbody>
-                    <td>{{ $i->id }}</td>
-                    <td>{{ $i->product->nama }}</td>
-                    <td>{{ $i->supplier->nama }}</td>
-                    <td>{{ $i->qty }}</td>
-                    <td>{{ $i->tanggal }}</td>
-                    <td>{{ $i->harga_beli }}</td>
-                    <td>
-                        <a href="{{ route('exportPDF.productMasuk', [ 'id' => $i->id ]) }}" class="btn btn-sm btn-danger">Export PDF</a>
-                    </td>
-                    </tbody>
-                @endforeach
-            </table>
-        </div>
-        <!-- /.box-body -->
-    </div>
-
     @include('product_masuk.form')
 
 @endsection

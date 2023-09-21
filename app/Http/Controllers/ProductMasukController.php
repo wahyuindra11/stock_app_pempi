@@ -171,19 +171,21 @@ class ProductMasukController extends Controller
     public function exportProductMasukAll()
     {
         $product_masuk = Product_Masuk::all();
+        $timestamp = now()->format('Y-m-d_H-i-s');
+
         $pdf = PDF::loadView('product_masuk.productMasukAllPDF',compact('product_masuk'));
-        return $pdf->download('product_masuk.pdf');
+        $filename = 'product_masuk_' . $timestamp . '.pdf';
+
+        return $pdf->download($filename);
     }
 
-    public function exportProductMasuk($id)
-    {
-        $product_masuk = Product_Masuk::findOrFail($id);
-        $pdf = PDF::loadView('product_masuk.productMasukPDF', compact('product_masuk'));
-        return $pdf->download($product_masuk->id.'_product_masuk.pdf');
-    }
 
     public function exportExcel()
     {
-        return (new ExportProdukMasuk)->download('product_masuk.xlsx');
+        $timestamp = now()->format('Y-m-d_H-i-s');
+
+        $filename = 'product_masuk_' . $timestamp . '.xlsx';
+
+        return (new ExportProdukMasuk)->download($filename);
     }
 }

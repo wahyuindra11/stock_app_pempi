@@ -28,10 +28,9 @@
                 <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Name</th>
-                    <th>Address</th>
-                    {{-- <th>Email</th> --}}
-                    <th>Phone</th>
+                    <th>Nama</th>
+                    <th>Alamat</th>
+                    <th>Telepon</th>
                     <th>Action</th>
                 </tr>
                 </thead>

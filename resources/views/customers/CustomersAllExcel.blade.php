@@ -42,19 +42,19 @@
 <table id="categories" width="100%">
     <thead>
     <tr>
-        <td>ID</td>
-        <td>Name</td>
-        <td>Address</td>
-        {{-- <td>Email</td> --}}
+        <td>No</td>
+        <td>Nama</td>
+        <td>Alamat</td>
+        <td>Telepon</td>
     </tr>
     </thead>
     @foreach($customers as $c)
         <tbody>
         <tr>
-            <td>{{ $c->id }}</td>
+            <td>{{ $loop->iteration }}</td>
             <td>{{ $c->nama }}</td>
             <td>{{ $c->alamat }}</td>
-            {{-- <td>{{ $c->email }}</td> --}}
+            <td>{{ $c->telepon }}</td>
         </tr>
         </tbody>
     @endforeach

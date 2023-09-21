@@ -40,12 +40,6 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/exportCustomersAll', 'CustomerController@exportCustomersAll')->name('exportPDF.customersAll');
 	Route::get('/exportCustomersAllExcel', 'CustomerController@exportExcel')->name('exportExcel.customersAll');
 
-	Route::resource('sales', 'SaleController');
-	Route::get('/apiSales', 'SaleController@apiSales')->name('api.sales');
-	Route::post('/importSales', 'SaleController@ImportExcel')->name('import.sales');
-	Route::get('/exportSalesAll', 'SaleController@exportSalesAll')->name('exportPDF.salesAll');
-	Route::get('/exportSalesAllExcel', 'SaleController@exportExcel')->name('exportExcel.salesAll');
-
 	Route::resource('suppliers', 'SupplierController');
 	Route::get('/apiSuppliers', 'SupplierController@apiSuppliers')->name('api.suppliers');
 	Route::post('/importSuppliers', 'SupplierController@ImportExcel')->name('import.suppliers');
@@ -61,13 +55,12 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/apiProductsOut', 'ProductKeluarController@apiProductsOut')->name('api.productsOut');
 	Route::get('/exportProductKeluarAll', 'ProductKeluarController@exportProductKeluarAll')->name('exportPDF.productKeluarAll');
 	Route::get('/exportProductKeluarAllExcel', 'ProductKeluarController@exportExcel')->name('exportExcel.productKeluarAll');
-	Route::get('/exportProductKeluar/{id}', 'ProductKeluarController@exportProductKeluar')->name('exportPDF.productKeluar');
+	
 
 	Route::resource('productsIn', 'ProductMasukController');
 	Route::get('/apiProductsIn', 'ProductMasukController@apiProductsIn')->name('api.productsIn');
 	Route::get('/exportProductMasukAll', 'ProductMasukController@exportProductMasukAll')->name('exportPDF.productMasukAll');
 	Route::get('/exportProductMasukAllExcel', 'ProductMasukController@exportExcel')->name('exportExcel.productMasukAll');
-	Route::get('/exportProductMasuk/{id}', 'ProductMasukController@exportProductMasuk')->name('exportPDF.productMasuk');
 
 	Route::resource('user', 'UserController');
 	Route::get('/apiUser', 'UserController@apiUsers')->name('api.users');

@@ -57,7 +57,6 @@
             <li><a href="/FinishGood"><i class="fa-solid fa-fire-extinguisher nav-icon" style="color: #ffffff;"></i> <span>Finish Good</span></a></li>
             <li><a href="{{ route('products.index') }}"><i class="fa-solid fa-cubes nav-icon" style="color: #ffffff;"></i><span>Product</span></a></li>
             <li><a href="{{ route('customers.index') }}"><i class="fa-solid fa-street-view nav-icon" style="color: #ffffff;"></i> <span>Customer</span></a></li>
-            <!-- <li><a href="{{ route('sales.index') }}"><i class="fa fa-cart-plus nav-icon"></i> <span>Penjualan</span></a></li> -->
             <li><a href="{{ route('suppliers.index') }}"><i class="fa-solid fa-truck-arrow-right nav-icon" style="color: #ffffff;"></i><span>Supplier</span></a></li>
             <li><a href="{{ route('productsOut.index') }}"><i class="fa-solid fa-circle-minus nav-icon" style="color: #ffffff;"></i><span>Product Keluar</span></a></li>
             <li><a href="{{ route('productsIn.index') }}"><i class="fa-solid fa-circle-plus nav-icon" style="color: #ffffff;"></i><span>Product Masuk</span></a></li>
