@@ -27,7 +27,7 @@
             <table id="customer-table" class="table table-striped">
                 <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>Nomor</th>
                     <th>Nama</th>
                     <th>Alamat</th>
                     <th>Telepon</th>
@@ -77,13 +77,20 @@
             serverSide: true,
             ajax: "{{ route('api.customers') }}",
             columns: [
-                {data: 'id', name: 'id'},
+                {data: null, name: 'DT_RowIndex', orderable: false, searchable: false}, 
                 {data: 'nama', name: 'nama'},
                 {data: 'alamat', name: 'alamat'},
                 // {data: 'email', name: 'email'},
                 {data: 'telepon', name: 'telepon'},
                 {data: 'action', name: 'action', orderable: false, searchable: false}
             ]
+        });
+
+        table.on('draw.dt', function () {
+            var info = table.page.info();
+            table.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+                cell.innerHTML = i + 1 + info.start;
+            });
         });
 
         function addForm() {

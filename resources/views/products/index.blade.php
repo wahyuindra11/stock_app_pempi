@@ -21,7 +21,7 @@
             <table id="products-table" class="table table-striped">
                 <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>Nomor</th>
                     <th>Nama</th>
                     <th>Harga</th>
                     <th>QTY</th>
@@ -67,20 +67,27 @@
 
     <script type="text/javascript">
         var table = $('#products-table').DataTable({
+            responsive: true,
             processing: true,
             serverSide: true,
             ajax: "{{ route('api.products') }}",
             columns: [
-                {data: 'id', name: 'id'},
+                {data: null, name: 'DT_RowIndex', orderable: false, searchable: false}, 
                 {data: 'nama', name: 'nama'},
                 {data: 'harga_beli', name: 'harga_beli'},
                 {data: 'qty', name: 'qty'},       
-                // {data: 'show_photo', name: 'show_photo'},
                 {data: 'category_name', name: 'category_name'},
                 {data: 'nomer_spb', name: 'nomer_spb'},
                 {data: 'keterangan', name: 'keterangan'},
                 {data: 'action', name: 'action', orderable: false, searchable: false}
             ]
+        });
+
+        table.on('draw.dt', function () {
+            var info = table.page.info();
+            table.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+                cell.innerHTML = i + 1 + info.start;
+            });
         });
 
         function addForm() {

@@ -29,7 +29,7 @@
             <table id="products-out-table" class="table table-striped">
                 <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>Nomor</th>
                     <th>Material</th>
                     <th>Customer</th>
                     <th>QTY</th>
@@ -116,7 +116,7 @@
             serverSide: true,
             ajax: "{{ route('api.productsOut') }}",
             columns: [
-                {data: 'id', name: 'id'},
+                {data: null, name: 'DT_RowIndex', orderable: false, searchable: false}, 
                 {data: 'products_name', name: 'products_name'},
                 {data: 'customer_name', name: 'customer_name'},
                 {data: 'qty', name: 'qty'},
@@ -125,6 +125,13 @@
                 {data: 'keterangan', name: 'keterangan'},
                 {data: 'action', name: 'action', orderable: false, searchable: false}
             ]
+        });
+
+        table.on('draw.dt', function () {
+            var info = table.page.info();
+            table.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+                cell.innerHTML = i + 1 + info.start;
+            });
         });
 
         function addForm() {

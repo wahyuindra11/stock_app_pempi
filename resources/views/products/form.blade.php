@@ -42,25 +42,15 @@
 
                         <div class="form-group">
                             <label >Keterangan</label>
-                            <input type="text" class="form-control" id="keterangan" name="keterangan"  autofocus required>
+                            <input type="text" class="form-control" id="keterangan" name="keterangan"  autofocus>
                             <span class="help-block with-errors"></span>
                         </div>
-
-
-                        {{-- <div class="form-group">
-                            <label >Image</label>
-                            <input type="file" class="form-control" id="image" name="image" >
-                            <span class="help-block with-errors"></span>
-                        </div> --}}
 
                         <div class="form-group">
                             <label >Category</label>
                             {!! Form::select('category_id', $category, null, ['class' => 'form-control select', 'placeholder' => '-- Choose Category --', 'id' => 'category_id', 'required']) !!}
                             <span class="help-block with-errors"></span>
                         </div>
-
-
-
 
                     </div>
                     <!-- /.box-body -->

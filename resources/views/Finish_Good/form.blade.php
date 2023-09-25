@@ -17,36 +17,47 @@
 
                     <div class="box-body">
                         <div class="form-group">
-                            <label >Material</label>
-                            {{-- <input type="text" class="form-control" id="material" name="product_id" required> --}}
-                            {!! Form::select('product_id', $products, null, ['class' => 'form-control select', 'placeholder' => '-- Choose Product --', 'id' => 'product_id', 'required']) !!}
+                            <label >Name</label>
+                            <input type="text" class="form-control" id="nama" name="nama"  autofocus required>
                             <span class="help-block with-errors"></span>
                         </div>
 
                         <div class="form-group">
-                            <label >Supplier</label>
-                            {{-- <input type="text" class="form-control" id="Supplier" name="supplier_id" required>       --}}
-                            {!! Form::select('supplier_id', $suppliers, null, ['class' => 'form-control select', 'placeholder' => '-- Choose Supplier --', 'id' => 'supplier_id', 'required']) !!}
+                            <label >Price</label>
+                            <input type="text" class="form-control" id="harga_beli" name="harga_beli"   required>
                             <span class="help-block with-errors"></span>
                         </div>
 
                         <div class="form-group">
                             <label >Quantity</label>
-                            <input type="text" class="form-control" id="qty" name="qty" required>
+                            <input type="text" class="form-control" id="qty" name="qty"   required>
                             <span class="help-block with-errors"></span>
                         </div>
 
                         <div class="form-group">
-                            <label >Date</label>
-                            <input data-date-format='yyyy-mm-dd' type="text" class="form-control" id="tanggal" name="tanggal"   required>
+                            <label >Nomer SPB</label>
+                            <input type="text" class="form-control" id="nomer_spb" name="nomer_spb"  autofocus required>
                             <span class="help-block with-errors"></span>
                         </div>
 
                         <div class="form-group">
-                            <label >Harga Beli</label>
-                            <input type="text" class="form-control" id="harga_beli" name="harga_beli" required>
+                            <label >Keterangan</label>
+                            <input type="text" class="form-control" id="keterangan" name="keterangan"  autofocus>
                             <span class="help-block with-errors"></span>
                         </div>
+
+
+                        
+
+                        <div class="form-group">
+                            <label >Category</label>
+                            {!! Form::select('category_id', $category, null, ['class' => 'form-control select', 'placeholder' => '-- Choose Category --', 'id' => 'category_id', 'required']) !!}
+                            <span class="help-block with-errors"></span>
+                        </div>
+
+
+
+
                     </div>
                     <!-- /.box-body -->
 

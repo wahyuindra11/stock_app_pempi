@@ -44,38 +44,41 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
-    {
-        $category = Category::orderBy('name','ASC')
-            ->get()
-            ->pluck('name','id');
+{
+    $category = Category::orderBy('name','ASC')
+        ->get()
+        ->pluck('name','id');
 
-        $this->validate($request , [
-            'nama'          => 'required|string',
-            'harga_beli'         => 'required',
-            'qty'           => 'required',
-            // 'image'         => 'required',
-            'category_id'   => 'required',
-            'nomer_spb' => 'required',
-            'keterangan' => 'required'
-        ]);
+    $this->validate($request , [
+        'nama'          => 'required|string',
+        'harga_beli'    => 'required',
+        'qty'           => 'required',
+        'category_id'   => 'required',
+        'nomer_spb'     => 'required',
+        'keterangan'    => 'required'
+    ]);
 
+    // Cari produk berdasarkan nama
+    $existingProduct = Product::where('nama', $request->nama)->first();
+
+    if ($existingProduct) {
+        // Produk dengan nama yang sama sudah ada, tambahkan stok
+        $existingProduct->qty += $request->qty;
+        $existingProduct->save();
+    } else {
+        // Produk dengan nama yang sama belum ada, buat produk baru
         $input = $request->all();
-        // $input['image'] = null;
-
-        // if ($request->hasFile('image')){
-        //     $input['image'] = '/upload/products/'.str_slug($input['nama'], '-').'.'.$request->image->getClientOriginalExtension();
-        //     $request->image->move(public_path('/upload/products/'), $input['image']);
-        // }
-
         Product::create($input);
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Products Created'
-        ]);
-
     }
+
+    return response()->json([
+        'success' => true,
+        'message' => 'Product Created or Stock Updated'
+    ]);
+}
+
 
     /**
      * Display the specified resource.

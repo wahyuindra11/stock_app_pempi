@@ -20,7 +20,7 @@ class FinishGoodController extends Controller
      */
     public function index()
     {
-        $category = Category::where('id', 3)->get()->pluck('name','id');
+        $category = Category::all()->pluck('name','id');
         $producs = Product::where('category_id', 3)->get();
 
         return view('Finish_Good.index', compact('category', 'producs'));
@@ -69,6 +69,11 @@ class FinishGoodController extends Controller
         // }
 
         Product::create($input);
+
+        $product = Product::findOrFail($request->nama);
+        $product->qty += $request->qty;
+        $product->harga_beli = $request->input('harga_beli');
+        $product->save();
 
         return response()->json([
             'success' => true,

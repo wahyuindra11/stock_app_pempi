@@ -20,7 +20,8 @@ class AccessoriesController extends Controller
      */
     public function index()
     {
-        $category = Category::where('id', 2)->get()->pluck('name','id');
+        $category = Category::all()->pluck('name','id');
+        // where('id', 1)->get()->pluck('name','id');
         $producs = Product::where('category_id', 2)->get();
 
         return view('accessories.index', compact('category', 'producs'));

@@ -9,21 +9,19 @@
 @section('content')
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title">Data Products</h3>
+            <h3 class="box-title">Data Accessories</h3>
 
         </div>
-        <a onclick="addForm()" class="btn btn-primary" style="margin: 10px;">Add Products</a>
 
         <!-- /.box-header -->
         <div class="box-body">
             <table id="products-table" class="table table-striped">
                 <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>Nomor</th>
                     <th>Nama</th>
                     <th>Harga</th>
                     <th>QTY</th>
-                    {{-- <th>Image</th> --}}
                     <th>Category</th>
                     <th>Nomer SPB</th>
                     <th>Keterangan</th>
@@ -36,7 +34,7 @@
         <!-- /.box-body -->
     </div>
 
-    @include('products.form')
+    @include('accessories.form')
 
 @endsection
 
@@ -69,11 +67,10 @@
     serverSide: true,
     ajax: "{{ route('api.products.accessories', ['category_id' => 1]) }}", 
     columns: [
-        {data: 'id', name: 'id'},
+        {data: null, name: 'DT_RowIndex', orderable: false, searchable: false},  
         {data: 'nama', name: 'nama'},
         {data: 'harga_beli', name: 'harga_beli'},
         {data: 'qty', name: 'qty'},       
-        // {data: 'show_photo', name: 'show_photo'},
         {data: 'category_name', name: 'category_name'},
         {data: 'nomer_spb', name: 'nomer_spb'},
         {data: 'keterangan', name: 'keterangan'},
@@ -81,15 +78,16 @@
     ]
 });
 
+table.on('draw.dt', function () {
+    var info = table.page.info();
+    table.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+        cell.innerHTML = i + 1 + info.start;
+    });
+});
 
-        function addForm() {
-            save_method = "add";
-            $('input[name=_method]').val('POST');
-            $('#modal-form').modal('show');
-            $('#modal-form form')[0].reset();
-            $('.modal-title').text('Add Products');
-        }
 
+
+       
         function editForm(id) {
             save_method = 'edit';
             $('input[name=_method]').val('PATCH');
