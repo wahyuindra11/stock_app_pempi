@@ -43,7 +43,7 @@
     <!-- DataTables -->
     <script src=" {{ asset('assets/bower_components/datatables.net/js/jquery.dataTables.min.js') }} "></script>
     <script src="{{ asset('assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }} "></script>
-
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
     {{-- Validator --}}
     <script src="{{ asset('assets/validator/validator.min.js') }}"></script>
 
@@ -63,27 +63,28 @@
 
     <script type="text/javascript">
         var table = $('#products-table').DataTable({
-    processing: true,
-    serverSide: true,
-    ajax: "{{ route('api.products.accessories', ['category_id' => 1]) }}", 
-    columns: [
-        {data: null, name: 'DT_RowIndex', orderable: false, searchable: false},  
-        {data: 'nama', name: 'nama'},
-        {data: 'harga_beli', name: 'harga_beli'},
-        {data: 'qty', name: 'qty'},       
-        {data: 'category_name', name: 'category_name'},
-        {data: 'nomer_spb', name: 'nomer_spb'},
-        {data: 'keterangan', name: 'keterangan'},
-        {data: 'action', name: 'action', orderable: false, searchable: false}
-    ]
-});
+            responsive: true,
+            processing: true,
+            serverSide: true,
+            ajax: "{{ route('api.products.accessories', ['category_id' => 1]) }}", 
+            columns: [
+                {data: null, name: 'DT_RowIndex', orderable: false, searchable: false},  
+                {data: 'nama', name: 'nama'},
+                {data: 'harga_beli', name: 'harga_beli'},
+                {data: 'qty', name: 'qty'},       
+                {data: 'category_name', name: 'category_name'},
+                {data: 'nomer_spb', name: 'nomer_spb'},
+                {data: 'keterangan', name: 'keterangan'},
+                {data: 'action', name: 'action', orderable: false, searchable: false}
+            ]
+        });
 
-table.on('draw.dt', function () {
-    var info = table.page.info();
-    table.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
-        cell.innerHTML = i + 1 + info.start;
-    });
-});
+        table.on('draw.dt', function () {
+            var info = table.page.info();
+            table.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+                cell.innerHTML = i + 1 + info.start;
+            });
+        });
 
 
 

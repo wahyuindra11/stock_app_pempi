@@ -10,16 +10,15 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('assets/bower_components/bootstrap/dist/css/bootstrap.min.css ')}}">
     {{-- responsive --}}
+    <!-- Include DataTables Responsive CSS -->
     <link rel="stylesheet" href="{{ asset('assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/bower_components/responsive/css/responsive.bootstrap.min.css') }}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
 
+    <!-- Include DataTables JavaScript -->
     <script src="{{ asset('assets/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
-    <script src="{{ asset('assets/bower_components/responsive/js/dataTables.responsive.min.js') }}"></script>
-    <script src="{{ asset('assets/bower_components/responsive/js/responsive.bootstrap.min.js') }}"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
-  
-    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/ee542f3def.js" crossorigin="anonymous"></script>
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> --}}

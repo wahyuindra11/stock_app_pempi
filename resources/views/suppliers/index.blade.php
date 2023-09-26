@@ -49,7 +49,7 @@
     <!-- DataTables -->
     <script src=" {{ asset('assets/bower_components/datatables.net/js/jquery.dataTables.min.js') }} "></script>
     <script src="{{ asset('assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }} "></script>
-
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
     {{-- Validator --}}
     <script src="{{ asset('assets/validator/validator.min.js') }}"></script>
 
@@ -69,6 +69,7 @@
 
     <script type="text/javascript">
         var table = $('#sales-table').DataTable({
+            responsive: true,
             processing: true,
             serverSide: true,
             ajax: "{{ route('api.suppliers') }}",
