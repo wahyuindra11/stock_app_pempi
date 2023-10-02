@@ -123,7 +123,17 @@
                 {data: 'supplier_name', name: 'supplier_name'},
                 {data: 'qty', name: 'qty'},
                 {data: 'tanggal', name: 'tanggal'},
-                {data: 'harga_beli', name: 'harga_beli'},
+                {
+                    data: 'harga_beli',
+                    name: 'harga_beli',
+                    render: function (data, type, row) {
+                        var formatter = new Intl.NumberFormat('id-ID', {
+                            style: 'currency',
+                            currency: 'IDR',
+                        });
+                        return formatter.format(data);
+                    }
+                },
                 {data: 'action', name: 'action', orderable: false, searchable: false}
             ]
         });

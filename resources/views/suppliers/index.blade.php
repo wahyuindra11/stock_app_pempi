@@ -77,7 +77,6 @@
                 {data: null, name: 'DT_RowIndex', orderable: false, searchable: false}, 
                 {data: 'nama', name: 'nama'},
                 {data: 'alamat', name: 'alamat'},
-                // {data: 'email', name: 'email'},
                 {data: 'telepon', name: 'telepon'},
                 {data: 'action', name: 'action', orderable: false, searchable: false}
             ]
@@ -114,7 +113,6 @@
                     $('#id').val(data.id);
                     $('#nama').val(data.nama);
                     $('#alamat').val(data.alamat);
-                    // $('#email').val(data.email);
                     $('#telepon').val(data.telepon);
                 },
                 error : function() {

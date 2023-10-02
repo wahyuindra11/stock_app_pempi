@@ -71,9 +71,10 @@ class UserController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function edit($id) {
-		$users = User::find($id);
-		return $users;
+		$user = User::find($id);
+		return view('user.edit', compact('user'));
 	}
+	
 
 	/**
 	 * Update the specified resource in storage.
@@ -105,13 +106,20 @@ class UserController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function destroy($id) {
-		User::destroy($id);
-
-		return response()->json([
-			'success' => true,
-			'message' => 'User Delete',
-		]);
+		try {
+			User::findOrFail($id)->delete();
+			return response()->json([
+				'success' => true,
+				'message' => 'Pengguna Dihapus',
+			]);
+		} catch (\Exception $e) {
+			return response()->json([
+				'success' => false,
+				'message' => 'Gagal menghapus pengguna.',
+			]);
+		}
 	}
+	
 
 	public function apiUsers() {
 		$users = User::all();

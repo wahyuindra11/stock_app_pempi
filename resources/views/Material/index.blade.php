@@ -71,9 +71,18 @@
             columns: [
                 {data: null, name: 'DT_RowIndex', orderable: false, searchable: false}, 
                 {data: 'nama', name: 'nama'},
-                {data: 'harga_beli', name: 'harga_beli'},
+                {
+                    data: 'harga_beli',
+                    name: 'harga_beli',
+                    render: function (data, type, row) {
+                        var formatter = new Intl.NumberFormat('id-ID', {
+                            style: 'currency',
+                            currency: 'IDR',
+                        });
+                        return formatter.format(data);
+                    }
+                },
                 {data: 'qty', name: 'qty'},       
-                // {data: 'show_photo', name: 'show_photo'},
                 {data: 'category_name', name: 'category_name'},
                 {data: 'nomer_spb', name: 'nomer_spb'},
                 {data: 'keterangan', name: 'keterangan'},

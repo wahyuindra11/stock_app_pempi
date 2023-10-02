@@ -54,19 +54,12 @@ class FinishGoodController extends Controller
             'nama'          => 'required|string',
             'harga_beli'         => 'required',
             'qty'           => 'required',
-            // 'image'         => 'required',
             'category_id'   => 'required',
             'nomer_spb' => 'required',
             'keterangan' => 'required'
         ]);
 
         $input = $request->all();
-        // $input['image'] = null;
-
-        // if ($request->hasFile('image')){
-        //     $input['image'] = '/upload/products/'.str_slug($input['nama'], '-').'.'.$request->image->getClientOriginalExtension();
-        //     $request->image->move(public_path('/upload/products/'), $input['image']);
-        // }
 
         Product::create($input);
 
