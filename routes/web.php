@@ -49,6 +49,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('products', 'ProductController');
 	Route::get('/apiProducts', 'ProductController@apiProducts')->name('api.products');
 
+
+
 	Route::resource('accessories', 'ProductMasukController');
 
 	Route::resource('productsOut', 'ProductKeluarController');
@@ -65,9 +67,10 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'UserController');
 	Route::get('/apiUser', 'UserController@apiUsers')->name('api.users');
 
-	Route::get('/FinishGood', [FinishGoodController::class, 'index'])->name('finishgood.index');
+	Route::get('/FinishGood', 'FinishGoodController@index')->name('finishgood.index');
 	Route::get('/api/products/{category_id}', 'FinishGoodController@apiProducts')->name('api.products.FinishGood');
-	
+	Route::get('FinishGood/create-finish-good/', 'FinishGoodController@create')->name('create.finish.good');
+
 	Route::get('/accessories', [AccessoriesController::class, 'index'])->name('accessories.index');
 	Route::get('/api/products/accessories/{accessories_category_id}', 'AccessoriesController@apiProducts')->name('api.products.accessories');
 

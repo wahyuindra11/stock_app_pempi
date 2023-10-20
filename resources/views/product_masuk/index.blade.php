@@ -12,6 +12,7 @@
 @endsection
 
 @section('content')
+
     <div class="box">
 
         <div class="box-header">
@@ -51,6 +52,8 @@
 
     @include('product_masuk.form')
 
+
+
 @endsection
 
 @section('bot')
@@ -59,6 +62,9 @@
     <script src=" {{ asset('assets/bower_components/datatables.net/js/jquery.dataTables.min.js') }} "></script>
     <script src="{{ asset('assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }} "></script>
     <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+
+    {{-- multiple select --}}
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <!-- InputMask -->
     <script src="{{ asset('assets/plugins/input-mask/jquery.inputmask.js') }}"></script>
@@ -108,7 +114,12 @@
             $('.timepicker').timepicker({
                 showInputs: false
             })
+
+            
         })
+        $(document).ready(function() {
+            $('.js-example-basic-multiple').select2();
+        });
     </script>
 
     <script type="text/javascript">

@@ -55,7 +55,6 @@ class AccessoriesController extends Controller
             'nama'          => 'required|string',
             'harga_beli'         => 'required',
             'qty'           => 'required',
-            // 'image'         => 'required',
             'category_id'   => 'required',
             'nomer_spb' => 'required',
             'keterangan' => 'required'
@@ -121,7 +120,6 @@ class AccessoriesController extends Controller
             'nama'          => 'required|string',
             'harga_beli'         => 'required',
             'qty'           => 'required',
-//            'image'         => 'required',
             'category_id'   => 'required',
         ]);
 

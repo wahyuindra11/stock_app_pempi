@@ -26,8 +26,8 @@ class ProductMasukController extends Controller
     public function index()
     {
         $products = Product::orderBy('nama','ASC')
-            ->get()
-            ->pluck('nama','id');
+        ->get()
+        ->pluck('nama','id');
 
         $suppliers = Supplier::orderBy('nama','ASC')
             ->get()

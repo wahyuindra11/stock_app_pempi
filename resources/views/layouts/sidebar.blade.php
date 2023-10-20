@@ -46,7 +46,7 @@
             <li class="{{ Request::is('products*') ? 'active' : '' }}"><a href="{{ route('products.index') }}"><i class="fa-solid fa-cubes nav-icon" style="color: #ffffff;"></i><span>Products</span></a></li>
             <li class="{{ Request::is('accessories*') ? 'active' : '' }}"><a href="/accessories"><i class="fa-solid fa-cube nav-icon" style="color: #ffffff;"></i></i> <span>accessories</span></a></li>
             <li class="{{ Request::is('Material*') ? 'active' : '' }}"><a href="/Material"><i class="fa-solid fa-cubes-stacked nav-icon" style="color: #ffffff;"></i> <span>Material</span></a></li>
-            <li class="{{ Request::is('FinishGood*') ? 'active' : '' }}"><a href="/FinishGood"><i class="fa-solid fa-fire-extinguisher nav-icon" style="color: #ffffff;"></i> <span>Finish Good</span></a></li>
+            <li class="{{ Request::is('FinishGood*') ? 'active' : '' }}"><a href="{{ route('finishgood.index') }}"><i class="fa-solid fa-fire-extinguisher nav-icon" style="color: #ffffff;"></i> <span>Finish Good</span></a></li>
             <li class="{{ Request::is('customers*') ? 'active' : '' }}"><a href="{{ route('customers.index') }}"><i class="fa-solid fa-street-view nav-icon" style="color: #ffffff;"></i> <span>Customer</span></a></li>
             <li class="{{ Request::is('suppliers*') ? 'active' : '' }}"><a href="{{ route('suppliers.index') }}"><i class="fa-solid fa-truck-arrow-right nav-icon" style="color: #ffffff;"></i><span>Supplier</span></a></li>
             <li class="{{ Request::is('productsOut*') ? 'active' : '' }}"><a href="{{ route('productsOut.index') }}"><i class="fa-solid fa-circle-minus nav-icon" style="color: #ffffff;"></i><span>Product Keluar</span></a></li>

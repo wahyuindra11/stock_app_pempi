@@ -1,6 +1,17 @@
-<div class="modal fade" id="modal-form" tabindex="1" role="dialog" aria-hidden="true" data-backdrop="static">
-    <div class="modal-dialog">
-        <div class="modal-content">
+@extends('layouts.master')
+
+@section('top')
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset('assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
+@endsection
+
+@section('content')
+    <div class="box" id="box">
+        <div class="box-header">
+            <h3 class="box-title">Create Finish Good</h3>
+
+        <!-- /.box-header -->
+        <div class="box-body">
             <form  id="form-item" method="post" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data" >
                 {{ csrf_field() }} {{ method_field('POST') }}
 
@@ -27,7 +38,7 @@
                                 @endif
                             @endforeach
                            </select> --}}
-                            <input type="text" class="form-control" id="nama" name="nama"  autofocus required>
+                            <input type="text" class="form-control" id="nama" name="nama" value="{{ isset($product) ? $product->nama : '' }}" required>
                             <span class="help-block with-errors"></span>
                         </div>
 
@@ -105,8 +116,11 @@
 
             </form>
         </div>
-        <!-- /.modal-content -->
+        <!-- /.box-body -->
     </div>
-    <!-- /.modal-dialog -->
-</div>
-<!-- /.modal -->
+
+@endsection
+
+@section('bot')
+
+@endsection
