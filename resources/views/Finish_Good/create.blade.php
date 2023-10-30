@@ -9,118 +9,194 @@
     <div class="box" id="box">
         <div class="box-header">
             <h3 class="box-title">Create Finish Good</h3>
-
+        </div>
         <!-- /.box-header -->
         <div class="box-body">
-            <form  id="form-item" method="post" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data" >
+            <form id="form-item" action="/FinishGood" method="post" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
                 {{ csrf_field() }} {{ method_field('POST') }}
 
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span></button>
-                    <h3 class="modal-title"></h3>
-                </div>
-
-
                 <div class="modal-body">
-                    <input type="hidden" id="id" name="id">
-
-
                     <div class="box-body">
-                        <div class="form-group">
-                            <label >Nama</label>
-                            {{-- {!! Form::select('nama', $products->where('category_id', 3)->pluck('nama'), null, ['class' => 'form-control select', 'placeholder' => '-- Choose Product --', 'id' => 'product_id', 'required']) !!} --}}
-                            {{-- <input type="text" class="form-control" id="nama" name="nama"  autofocus required> --}}
-                           {{-- <select class="js-example-basic-single" name="nama" id="nama" style="width: 100%">
-                            @foreach($products as $product)
-                                @if ($product->category_id == 3)
-                                    <option value="{{ $product->name }}">{{ $product->nama }}</option>
-                                @endif
-                            @endforeach
-                           </select> --}}
-                            <input type="text" class="form-control" id="nama" name="nama" value="{{ isset($product) ? $product->nama : '' }}" required>
-                            <span class="help-block with-errors"></span>
+                        <div class="modal-body" style="margin-bottom: 60px">
+                            <div class="box-header">
+                                <h3 class="box-title" style="font-weight:600">Produk yang akan dibuat</h3>
+                            </div>
+                            <hr>
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Quantity</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <th scope="row">
+                                        <div class="col-auto">
+                                            <select name="nama" class="form-control" required>
+                                                @foreach ($products as $product)
+                                                    @if ($product->category_id == 3)
+                                                        <option value="{{ $product->nama }}">{{ $product->nama }}</option>
+                                                    @endif
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </th>
+                                    <td>
+                                        <div class="col-auto">
+                                            <input name="qty[]" type="text" class="form-control" required>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
-
-                        <div class="form-group">
-                            <label >Material</label>
-                            <select class="js-example-basic-multiple" name="nama[]" id="materials[]" multiple="multiple" style="width: 100%" required>
-                                @foreach($products as $product)
-                                    @if ($product->category_id == 2)
-                                        <option value="{{ $product }}">{{ $product->nama }}</option> 
-                                    @endif
-                                @endforeach
-                            </select>
-                            <span class="help-block with-errors"></span>
+                        <div class="modal-body">
+                            <div class="box-header">
+                                <h3 class="box-title" style="font-weight:600">Material yang digunakan</h3>
+                            </div>
+                            <hr>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Category</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Stock</th>
+                                        <th scope="col">Material Usage</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">
+                                            <div class="col-auto">
+                                                <h5 style="font-weight: bold">Accessories</h5>
+                                            </div>
+                                        </th>
+                                        <td>
+                                            <div class="col-auto">
+                                                <select name="accessories_nama" id="accessories_nama" class="form-control" required>
+                                                    @foreach ($products as $product)
+                                                        @if ($product->category_id == 1)
+                                                            <option value="{{ $product->nama }}" data-qty="{{ $product->qty }}">{{ $product->nama }}</option>
+                                                        @endif
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="col-auto">
+                                                <input type="text" class="form-control" id="accessories_stock" disabled>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="col-auto">
+                                                <input name="qty[]" type="text" class="form-control" required>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <div class="col-auto">
+                                                <h5 style="font-weight: bold">Material</h5>
+                                            </div>
+                                        </th>
+                                        <td>
+                                            <div class="col-auto">
+                                                <select name="material_nama" id="material_nama" class="form-control" required>
+                                                    @foreach ($products as $product)
+                                                        @if ($product->category_id == 2)
+                                                            <option value="{{ $product->nama }}" data-qty="{{ $product->qty }}">{{ $product->nama }}</option>
+                                                        @endif
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="col-auto">
+                                                <input type="text" class="form-control" id="material_stock" disabled>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="col-auto">
+                                                <input name="qty[]" type="text" class="form-control" required>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-
-                        <div class="form-group">
-                            <label >Accessories</label>
-                            
-                            <select class="js-example-basic-multiple" name="nama[]" id="accessories[]" multiple="multiple" style="width: 100%" required>
-            
-                                @foreach($products as $product)
-                                @if ($product->category_id == 1)
-                                    <option value="{{ $product }}">{{ $product->nama }}</option> 
-                                @endif
-                                @endforeach
-                            </select>
-                            <span class="help-block with-errors"></span>
-                        </div>
-
-                        <div class="form-group">
-                            <label >Price</label>
-                            <input type="text" class="form-control" id="harga_beli" name="harga_beli"   required>
-                            <span class="help-block with-errors"></span>
-                        </div>
-
-                        <div class="form-group">
-                            <label >Quantity</label>
-                            <input type="text" class="form-control" id="qty" name="qty"   required>
-                            <span class="help-block with-errors"></span>
-                        </div>
-
-                        <div class="form-group">
-                            <label >Nomer SPB</label>
-                            <input type="text" class="form-control" id="nomer_spb" name="nomer_spb"  autofocus required>
-                            <span class="help-block with-errors"></span>
-                        </div>
-
-                        <div class="form-group">
-                            <label >Keterangan</label>
-                            <input type="text" class="form-control" id="keterangan" name="keterangan"  autofocus>
-                            <span class="help-block with-errors"></span>
-                        </div>
-
-
-                        
-
-                        <div class="form-group">
-                            <label >Category</label>
-                            {!! Form::select('category_id', $category, null, ['class' => 'form-control select', 'placeholder' => '-- Choose Category --', 'id' => 'category_id', 'required']) !!}
-                            <span class="help-block with-errors"></span>
-                        </div>
-
-
-
-
                     </div>
                     <!-- /.box-body -->
-
                 </div>
-
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="button" id="submit-button" class="btn btn-primary">Submit</button>
                 </div>
-
             </form>
         </div>
         <!-- /.box-body -->
     </div>
-
 @endsection
 
 @section('bot')
+    <script>
+        // Menambahkan event listener untuk setiap elemen select
+        const accessoriesSelect = document.getElementById("accessories_nama");
+        const materialSelect = document.getElementById("material_nama");
+        const accessoriesStockInput = document.getElementById("accessories_stock");
+        const materialStockInput = document.getElementById("material_stock");
 
+        accessoriesSelect.addEventListener("change", function () {
+            const selectedOption = accessoriesSelect.options[accessoriesSelect.selectedIndex];
+            const qty = selectedOption.getAttribute("data-qty");
+            accessoriesStockInput.value = qty;
+        });
+
+        materialSelect.addEventListener("change", function () {
+            const selectedOption = materialSelect.options[materialSelect.selectedIndex];
+            const qty = selectedOption.getAttribute("data-qty");
+            materialStockInput.value = qty;
+        });
+
+        // Menambahkan event listener untuk tombol Submit
+        const submitButton = document.getElementById("submit-button");
+        submitButton.addEventListener("click", function () {
+            // Tampilkan SweetAlert sebelum mengirim formulir
+            swal({
+                title: 'Mengirimkan...',
+                text: 'Sedang memproses data...',
+                type: 'info',
+                showConfirmButton: false,
+            });
+
+            // Kirim formulir menggunakan AJAX
+            $.ajax({
+                url: "/FinishGood", // Ganti dengan URL yang sesuai
+                type: "POST",
+                data: $('#form-item').serialize(), // Ambil data formulir
+                success: function (data) {
+                    swal({
+                        title: 'Berhasil!',
+                        text: data.message, // Gunakan pesan dari respons
+                        type: 'success',
+                        timer: 1500,
+                        showConfirmButton: false,
+                    });
+
+                    // Redirect ke halaman lain jika diperlukan
+                    // window.location.href = "/success-page";
+                },
+                error: function (xhr, status, error) {
+                    var errorMessage = xhr.responseJSON.message;
+
+                    swal({
+                        title: 'Gagal!',
+                        text: errorMessage, // Gunakan pesan error dari respons JSON
+                        type: 'error',
+                        timer: 1500,
+                        showConfirmButton: false,
+                    });
+                },
+            });
+        });
+    </script>
 @endsection

@@ -40,12 +40,6 @@ class FinishGoodController extends Controller
         return view('Finish_Good.create', compact('product', 'products', 'category'));
     }
 
-    public function createDataView()
-    {
-        $products = Product::all();
-        return view('Finish_Good.create');
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -55,35 +49,57 @@ class FinishGoodController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama' => 'required|string',
-            'materials' => 'nullable|array',
-            'accessories' => 'nullable|array',            
-            'harga_beli' => 'required',
-            'qty' => 'required',
-            'category_id' => 'required',
-            'nomer_spb' => 'required',
-            'keterangan' => 'required',
+            'nama' => 'required',
+            'qty' => 'required|array',
+            'accessories_nama' => 'required',
+            'material_nama' => 'required'
         ]);
 
-        // Cari produk berdasarkan nama
-        $existingProduct = Product::where('nama', $request->nama)->first();
+        try {
+            // Cari produk 'accessories' berdasarkan nama
+            $accessoriesProduct = Product::where('nama', $request->input('accessories_nama'))->first();
 
-        if ($existingProduct) {
-            // Jika produk dengan nama yang sama sudah ada, perbarui data produk
-            $existingProduct->qty += $request->qty;
-            $existingProduct->harga_beli = $request->input('harga_beli');
-            $existingProduct->save();
-        } else {
-            // Jika tidak ada produk dengan nama yang sama, buat produk baru
-            $input = $request->all();
-            Product::create($input);
+            if ($accessoriesProduct) {
+                $accessoriesProduct->qty -= $request->input('qty')[1];
+                $accessoriesProduct->save();
+            }
+
+            // Cari produk 'material' berdasarkan nama
+            $materialProduct = Product::where('nama', $request->input('material_nama'))->first();
+
+            if ($materialProduct) {
+                $materialProduct->qty -= $request->input('qty')[2];
+                $materialProduct->save();
+            }
+
+            // Cari produk berdasarkan nama
+            $existingProduct = Product::where('nama', $request->input('nama'))->first();
+
+            if ($existingProduct) {
+                $existingProduct->qty += $request->input('qty')[0];
+                $existingProduct->save();
+            } else {
+                // Jika produk dengan nama yang sama tidak ditemukan, buat produk baru
+                Product::create([
+                    'nama' => $request->input('nama'),
+                    'qty' => $request->input('qty')[0], // Sesuaikan dengan indeks yang benar
+                ]);
+            }
+
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Product ' . ($existingProduct ? 'Updated' : 'Created')
+            ]);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Error: ' . $e->getMessage()
+            ]);
         }
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Product ' . ($existingProduct ? 'Updated' : 'Created')
-        ]);
     }
+
 
     
 
@@ -145,7 +161,7 @@ class FinishGoodController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'Products Update'
+            'message' => 'Products Created'
         ]);
     }
 
@@ -183,14 +199,11 @@ class FinishGoodController extends Controller
                 })
                 ->addColumn('action', function($product){
                     return 
-                    '<a href="' . route('create.finish.good', ['id' => $product->id]) . '" class="btn btn-secondary btn-xs" target="_blank"><i class="glyphicon glyphicon-plus"></i><span class="text"> Create</a>' .
-                        // '<a onclick="createData('. $product->id .')" class="btn btn-secondary btn-xs" target"_blank"><i class="glyphicon glyphicon-plus"></i><span class="text"> Create</a>' .
+                    '<a href="' . route('create.finish.good') . '" class="btn btn-secondary btn-xs" target="_blank"><i class="glyphicon glyphicon-plus"></i><span class="text"> Create</a>' .
                         '<a onclick="editForm('. $product->id .')" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i> Edit</a> ' .
                         '<a onclick="deleteData('. $product->id .')" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
                 })
                 ->rawColumns(['category_name', 'action'])
                 ->make(true);
         }
-
-
     }

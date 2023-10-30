@@ -6,11 +6,20 @@
 @endsection
 
 @section('content')
+
+    
+
     <div class="box">
+        
         <div class="box-header">
             <h3 class="box-title">Data Finish Good</h3>
-
-         {{-- </div>
+        </div>
+        @if (session()->has('success'))
+            <div class="alert" role="alert">
+                {{ session('success') }}
+            </div>
+        @endif
+         {{-- 
         <a onclick="addForm()" class="btn btn-primary" style="margin: 10px;">Create Finish Good</a> --}}
 
 
@@ -76,7 +85,6 @@
             ajax: "{{ route('api.products.FinishGood', ['category_id' => 3]) }}", // Menggunakan parameter category_id = 3
             columns: [
                 {data: null, name: 'DT_RowIndex', orderable: false, searchable: false}, 
-                
                 {data: 'id', name: 'id'},
                 {data: 'nama', name: 'nama'},
                 {
@@ -104,117 +112,7 @@
                 cell.innerHTML = i + 1 + info.start;
             });
         });
-
-
-        // function createData(id, category) {
-        //     save_method = "add";
-        //     $('input[name=_method]').val('POST');
-        //     $('#modal-form').modal('show');
-        //     $('.modal-title').text('Add Products');
-        //     $('#modal-form form')[0].reset();
-
-        //     // You can set the category in the form
-        //     $('#category_id').val(category);
-
-        //     // Additional AJAX call or data population can be added here if needed
-        // }
-
-//         function createData(id) {
-//             save_method = "add";
-//             $('input[name=_method]').val('POST');
-//             $('#modal-form').modal('show');
-//             $('.modal-title').text('Add Products');
-//             $('#modal-form form')[0].reset();
-//             $.ajax({
-//                 url: '/create-data-view',
-//                 type: "GET",
-//                 dataType: "JSON",
-//                 success: function(data) {
-//                     $('#modal-form').modal('show');
-//                     $('.modal-title').text('Add Products');
-
-//                     $('#id').val(data.id);
-//                     $('#nama').val(data.nama);
-//                     $('#harga_beli').val(data.harga_beli);
-//                     $('#qty').val(data.qty);
-//                     $('#category_id').val(data.category_id);
-//                     $('#nomer_spb').val(data.nomer_spb);
-//                     $('#keterangan').val(data.keterangan);
-//                 },
-//                 error : function() {
-//                     alert("Nothing Data");
-//                 }
-//             });
-            
-        
-            function createData() {
-                save_method = 'add';
-                $('input[name=_method]').val('PATCH');
-                $('#modal-form').modal('show');
-                $('#modal-form form')[0].reset();
-                
-                // Melakukan permintaan AJAX ke tampilan "create.blade.php" atau ke rute yang sesuai
-                $.ajax({
-                    url: '{{ route("create.finish.good") }}', // Ganti dengan URL atau rute yang sesuai
-                    type: 'GET', // Metode permintaan dapat disesuaikan sesuai dengan kebutuhan
-                    success: function(response) {
-                        // Menampilkan tampilan "create.blade.php" dalam modal
-                        $('#modal-form .modal-body').html(response);
-                        $('.modal-title').text('Tambah Data Finish Good'); // Atur judul modal sesuai kebutuhan
-                    },
-                    error: function(error) {
-                        alert('Gagal memuat data: ' + error.responseText);
-                    }
-                });
-            }
-
-
-    // function createData(id) {
-    //         save_method = 'add';
-    //         $('input[name=_method]').val('PATCH');
-    //         $('#modal-form').modal('show');
-    //         $('#modal-form form')[0].reset();
-    //         $.ajax({
-    //             url: '/create-data-view',
-    //             type: "GET",
-    //             dataType: "JSON",
-    //             success: function(data) {
-    //                 $('#modal-form').modal('show');
-    //                 $('.modal-title').text('Add Products');
-
-    //                 $('#id').val(data.id);
-    //                 $('#nama').val(data.nama);
-    //                 $('#harga_beli').val(data.harga_beli);
-    //                 $('#qty').val(data.qty);
-    //                 $('#category_id').val(data.category_id);
-    //                 $('#nomer_spb').val(data.nomer_spb);
-    //                 $('#keterangan').val(data.keterangan);
-    //             },
-    //             error : function() {
-    //                 alert("Nothing Data");
-    //             }
-    //         });
-    //     }
     
-
-    // $.ajax({
-    //     url: '{{ route("create.finish.good") }}', // Rute yang mengarah ke halaman create.blade.php
-    //     method: 'GET', // Anda bisa mengganti ini dengan method yang sesuai
-    //     success: function(response) {
-    //         // Menampilkan halaman create.blade.php dalam modal atau div yang sesuai
-    //         $('#modal-content').html(response);
-    //     },
-    //     error: function(error) {
-    //         // Tangani kesalahan, misalnya, tampilkan pesan kesalahan
-    //         alert('Kesalahan membuat data: ' + error.responseText);
-    //     }
-    // });
-// }
-    
-
-
-
-
             function editForm(id) {
                             save_method = 'edit';
                             $('input[name=_method]').val('PATCH');
@@ -312,7 +210,7 @@
                                 title: 'Oops...',
                                 text: errorMessage,
                                 type: 'error',
-                                timer: '100500'
+                                timer: '1500'
                             });
                         }
                     });

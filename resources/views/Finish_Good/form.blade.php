@@ -31,7 +31,7 @@
                             <span class="help-block with-errors"></span>
                         </div>
 
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label >Material</label>
                             <select class="js-example-basic-multiple" name="nama[]" id="materials[]" multiple="multiple" style="width: 100%" required>
                                 @foreach($products as $product)
@@ -55,7 +55,7 @@
                                 @endforeach
                             </select>
                             <span class="help-block with-errors"></span>
-                        </div>
+                        </div> --}}
 
                         <div class="form-group">
                             <label >Price</label>
