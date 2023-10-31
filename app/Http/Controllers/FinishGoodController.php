@@ -143,9 +143,7 @@ class FinishGoodController extends Controller
             ->pluck('name','id');
 
         $this->validate($request , [
-            'nama'          => 'required|string',
-            'materials' => 'nullable|array',
-            'accessories' => 'nullable|array',            
+            'nama'          => 'required|string',          
             'harga_beli'    => 'required',
             'qty'           => 'required',
             'category_id'   => 'required',
@@ -155,8 +153,7 @@ class FinishGoodController extends Controller
 
         $input = $request->except('materials', 'accessories');
         $produk = Product::findOrFail($id);
-
-
+        
         $produk->update($input);
 
         return response()->json([
