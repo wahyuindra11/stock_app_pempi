@@ -10,14 +10,18 @@
                     <h3 class="modal-title"></h3>
                 </div>
 
-
                 <div class="modal-body">
                     <input type="hidden" id="id" name="id">
-
 
                     <div class="box-body">
                         <div class="form-group">
                             <label >Nama</label>
+                            @foreach($products as $product)
+                                @if ($product->category_id == 3)
+                                    <option value="{{ $product->name }}">{{ $product->nama }}</option>
+                                @endif
+                            @endforeach
+                           </select> --}}
                             <input type="text" class="form-control" id="nama" name="nama"  autofocus required>
                             <span class="help-block with-errors"></span>
                         </div>
@@ -46,9 +50,6 @@
                             <span class="help-block with-errors"></span>
                         </div>
 
-
-                        
-
                         <div class="form-group">
                             <label >Category</label>
                             {!! Form::select('category_id', $category, null, ['class' => 'form-control select', 'placeholder' => '-- Choose Category --', 'id' => 'category_id', 'required']) !!}
@@ -56,18 +57,14 @@
                         </div>
 
 
-
-
                     </div>
                     <!-- /.box-body -->
-
                 </div>
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
-
             </form>
         </div>
         <!-- /.modal-content -->
