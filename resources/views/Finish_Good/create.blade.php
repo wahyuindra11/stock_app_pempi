@@ -140,6 +140,25 @@
 
 @section('bot')
 <script>
+     // Menambahkan event listener untuk setiap elemen select
+        const accessoriesSelect = document.getElementById("accessories_nama");
+        const materialSelect = document.getElementById("material_nama");
+        const accessoriesStockInput = document.getElementById("accessories_stock");
+        const materialStockInput = document.getElementById("material_stock");
+
+        accessoriesSelect.addEventListener("change", function () {
+            const selectedOption = accessoriesSelect.options[accessoriesSelect.selectedIndex];
+            const qty = selectedOption.getAttribute("data-qty");
+            accessoriesStockInput.value = qty;
+        });
+
+        materialSelect.addEventListener("change", function () {
+            const selectedOption = materialSelect.options[materialSelect.selectedIndex];
+            const qty = selectedOption.getAttribute("data-qty");
+            materialStockInput.value = qty;
+        });
+
+
     // Menambahkan event listener untuk tombol Submit
     const submitButton = document.getElementById("submit-button");
     submitButton.addEventListener("click", function () {
@@ -169,6 +188,8 @@
                 swal('Gagal!', `Quantity dan Material Usage harus diisi.`, 'error');
             }
         });
+
+        
 
         if (isValid) {
             // Tampilkan SweetAlert sebelum mengirim formulir
