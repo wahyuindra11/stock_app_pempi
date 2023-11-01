@@ -14,14 +14,6 @@
         <div class="box-header">
             <h3 class="box-title">Data Finish Good</h3>
         </div>
-        @if (session()->has('success'))
-            <div class="alert" role="alert">
-                {{ session('success') }}
-            </div>
-        @endif
-         {{-- 
-        <a onclick="addForm()" class="btn btn-primary" style="margin: 10px;">Create Finish Good</a> --}}
-
 
         <!-- /.box-header -->
         <div class="box-body">
@@ -29,7 +21,6 @@
                 <thead>
                 <tr>
                     <th>Nomor</th>
-                    <th>id</th>
                     <th>Nama</th>
                     <th>Harga</th>
                     <th>QTY</th>
@@ -85,7 +76,6 @@
             ajax: "{{ route('api.products.FinishGood', ['category_id' => 3]) }}", // Menggunakan parameter category_id = 3
             columns: [
                 {data: null, name: 'DT_RowIndex', orderable: false, searchable: false}, 
-                {data: 'id', name: 'id'},
                 {data: 'nama', name: 'nama'},
                 {
                     data: 'harga_beli',

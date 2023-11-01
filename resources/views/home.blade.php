@@ -21,71 +21,60 @@
         </div>
     </div>
     <!-- ./col -->
-    <div class="col-lg-3 col-xs-6">
-        <!-- small box -->
-        <div class="small-box" style="background-color: #16A93E">
-            <div class="inner">
-                <h3>{{ \App\Category::count() }}<sup style="font-size: 20px"></sup></h3>
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box" style="background-color: #16A93E">
+                <div class="inner">
+                    <h3>{{ \App\Category::count() }}</h3>
+                    <p>Category</p>
+                </div>
+                <div class="icon">
+                    <img src="svg/category.svg" alt="category">
+                </div>
+                <a href="{{ route('categories.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
 
-                <p>Category</p>
+        <!-- Sub-menu for Category -->
+        <div class="col-lg-3 col-xs-6">
+            <div class="small-box" style="background-color: #37C4C8">
+                <div class="inner">
+                    <h3>{{ \App\Category::where('material', 'Accessories','finishgood')->count() }}</h3>
+                    <p>Accessories</p>
+                </div>
+                <div class="icon">
+                    <img src="svg/cube-solid.svg" alt="apar-icon">
+                </div>
+                <a href="{{ route('accessories.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="{{ route('material.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="{{ route('finish.good.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
-            <div class="icon">
-                <img src="svg/category.svg" alt="category">
-            </div>
-            <a href="{{ route('categories.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
         </div>
-    </div>
-    <!-- ./col -->
-    <div class="col-lg-3 col-xs-6">
-        <!-- small box -->
-        <div class="small-box" style="background-color: #F88507">
-            <div class="inner">
-                <h3>{{ \App\Product::count() }}</h3>
-                <p>Product</p>
+
+        <div class="col-lg-3 col-xs-6">
+            <div class="small-box" style="background-color:#EB3314">
+                <div class="inner">
+                    <h3>{{ \App\Category::where('name', 'Material')->count() }}</h3>
+                    <p>Material</p>
+                </div>
+                <div class="icon">
+                    <img src="svg/cubes-stacked-solid.svg" alt="apar-icon">
+                </div>
+                <a href="{{ route('material.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
-            <div class="icon">
-                <img src="svg/apar.svg" alt="apar-icon">
-            </div>
-            <a href="{{ route('products.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
         </div>
-    </div>
-    <div class="col-lg-3 col-xs-6">
-        <!-- small box -->
-        <div class="small-box" style="background-color: #37C4C8">
-            <div class="inner">
-                <h3>{{ \App\Product::where('category_id', 1)->count() }}</h3>
-                <p>Accessories</p>
+
+        <div class="col-lg-3 col-xs-6">
+            <div class="small-box" style="background-color: #D75272">
+                <div class="inner">
+                    <h3>{{ \App\Category::where('name', 'Finish Good')->count() }}</h3>
+                    <p>Finish Good</p>
+                </div>
+                <div class="icon">
+                    <img src="svg/fire-extinguisher-solid.svg" alt="apar-icon" style="width: 115px; height:115px">
+                </div>
+                <a href="{{ route('finishgood.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
-            <div class="icon">
-                <img src="svg/cube-solid.svg" alt="apar-icon">
-            </div>
-            <a href="{{ route('accessories.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-        </div>
-    </div>
-    <div class="col-lg-3 col-xs-6">
-        <!-- small box -->
-        <div class="small-box" style="background-color:#EB3314">
-            <div class="inner">
-                <h3>{{ \App\Product::where('category_id', 2)->count() }}</h3>
-                <p>Material</p>
-            </div>
-            <div class="icon">
-                <img src="svg/cubes-stacked-solid.svg" alt="apar-icon">
-            </div>
-            <a href="{{ route('material.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-        </div>
-    </div>
-    <div class="col-lg-3 col-xs-6">
-        <!-- small box -->
-        <div class="small-box" style="background-color: #D75272">
-            <div class="inner">
-                <h3>{{ \App\Product::where('category_id', 3)->count() }}</h3>
-                <p>Finish Good</p>
-            </div>
-            <div class="icon">
-                <img src="svg/fire-extinguisher-solid.svg" alt="apar-icon" style="width: 115px; height:115px">
-            </div>
-            <a href="{{ route('finishgood.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div>
     <div class="col-lg-3 col-xs-6">

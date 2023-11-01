@@ -18,44 +18,9 @@
                     <div class="box-body">
                         <div class="form-group">
                             <label >Nama</label>
-                            {{-- {!! Form::select('nama', $products->where('category_id', 3)->pluck('nama'), null, ['class' => 'form-control select', 'placeholder' => '-- Choose Product --', 'id' => 'product_id', 'required']) !!} --}}
-                            {{-- <input type="text" class="form-control" id="nama" name="nama"  autofocus required> --}}
-                           {{-- <select class="js-example-basic-single" name="nama" id="nama" style="width: 100%">
-                            @foreach($products as $product)
-                                @if ($product->category_id == 3)
-                                    <option value="{{ $product->name }}">{{ $product->nama }}</option>
-                                @endif
-                            @endforeach
-                           </select> --}}
                             <input type="text" class="form-control" id="nama" name="nama"  autofocus required>
                             <span class="help-block with-errors"></span>
                         </div>
-
-                        {{-- <div class="form-group">
-                            <label >Material</label>
-                            <select class="js-example-basic-multiple" name="nama[]" id="materials[]" multiple="multiple" style="width: 100%" required>
-                                @foreach($products as $product)
-                                    @if ($product->category_id == 2)
-                                        <option value="{{ $product }}">{{ $product->nama }}</option> 
-                                    @endif
-                                @endforeach
-                            </select>
-                            <span class="help-block with-errors"></span>
-                        </div>
-
-                        <div class="form-group">
-                            <label >Accessories</label>
-                            
-                            <select class="js-example-basic-multiple" name="nama[]" id="accessories[]" multiple="multiple" style="width: 100%" required>
-            
-                                @foreach($products as $product)
-                                @if ($product->category_id == 1)
-                                    <option value="{{ $product }}">{{ $product->nama }}</option> 
-                                @endif
-                                @endforeach
-                            </select>
-                            <span class="help-block with-errors"></span>
-                        </div> --}}
 
                         <div class="form-group">
                             <label >Price</label>

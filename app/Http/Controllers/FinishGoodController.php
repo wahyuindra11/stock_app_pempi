@@ -22,6 +22,7 @@ class FinishGoodController extends Controller
     {
         $category = Category::all()->pluck('name','id');
         $products = Product::all();
+        
 
         return view('Finish_Good.index', compact('category', 'products'));
     }
@@ -37,7 +38,9 @@ class FinishGoodController extends Controller
         $product = ($id !== null) ? Product::find($id) : null;
         $products = Product::all();
         $category = Category::all();
-        return view('Finish_Good.create', compact('product', 'products', 'category'));
+        return view('Finish_Good.create',[
+            // 'message' => 'harap isi bidang ini'
+        ], compact('product', 'products', 'category'));
     }
 
     /**
@@ -86,11 +89,12 @@ class FinishGoodController extends Controller
                 ]);
             }
 
-
             return response()->json([
                 'success' => true,
                 'message' => 'Product ' . ($existingProduct ? 'Updated' : 'Created')
             ]);
+
+        
 
         } catch (\Exception $e) {
             return response()->json([
@@ -199,7 +203,7 @@ class FinishGoodController extends Controller
                 })
                 ->addColumn('action', function($product){
                     return 
-                    '<a href="' . route('create.finish.good') . '" class="btn btn-secondary btn-xs" target="_blank"><i class="glyphicon glyphicon-plus"></i><span class="text"> Create</a>' .
+                    '<a href="' . route('create.finish.good') . '" class="btn btn-secondary btn-xs"><i class="glyphicon glyphicon-plus"></i><span class="text"> Create</a>' .
                         '<a onclick="editForm('. $product->id .')" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i> Edit</a> ' .
                         '<a onclick="deleteData('. $product->id .')" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
                 })

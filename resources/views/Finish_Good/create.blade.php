@@ -44,7 +44,7 @@
                                     </th>
                                     <td>
                                         <div class="col-auto">
-                                            <input name="qty[]" type="text" class="form-control" required>
+                                            <input name="qty[]" type="text" class="form-control"  required>
                                         </div>
                                     </td>
                                 </tr>
@@ -91,6 +91,7 @@
                                         <td>
                                             <div class="col-auto">
                                                 <input name="qty[]" type="text" class="form-control" required>
+                                                
                                             </div>
                                         </td>
                                     </tr>
@@ -138,28 +139,38 @@
 @endsection
 
 @section('bot')
-    <script>
-        // Menambahkan event listener untuk setiap elemen select
-        const accessoriesSelect = document.getElementById("accessories_nama");
-        const materialSelect = document.getElementById("material_nama");
-        const accessoriesStockInput = document.getElementById("accessories_stock");
-        const materialStockInput = document.getElementById("material_stock");
+<script>
+    // Menambahkan event listener untuk tombol Submit
+    const submitButton = document.getElementById("submit-button");
+    submitButton.addEventListener("click", function () {
+        // Cek apakah semua elemen input telah diisi
+        const namaInput = document.querySelector('select[name="nama"]');
+        const accessoriesNamaInput = document.querySelector('select[name="accessories_nama"]');
+        const materialNamaInput = document.querySelector('select[name="material_nama"]');
+        const qtyInputs = document.querySelectorAll('input[name="qty[]"]');
 
-        accessoriesSelect.addEventListener("change", function () {
-            const selectedOption = accessoriesSelect.options[accessoriesSelect.selectedIndex];
-            const qty = selectedOption.getAttribute("data-qty");
-            accessoriesStockInput.value = qty;
+        let isValid = true;
+
+        if (!namaInput.value) {
+            isValid = false;
+            swal('Gagal!', 'Nama produk harus diisi.', 'error');
+        }
+        if (!accessoriesNamaInput.value) {
+            isValid = false;
+            swal('Gagal!', 'Nama aksesoris harus diisi.', 'error');
+        }
+        if (!materialNamaInput.value) {
+            isValid = false;
+            swal('Gagal!', 'Nama material harus diisi.', 'error');
+        }
+        qtyInputs.forEach((qtyInput, index) => {
+            if (!qtyInput.value) {
+                isValid = false;
+                swal('Gagal!', `Quantity dan Material Usage harus diisi.`, 'error');
+            }
         });
 
-        materialSelect.addEventListener("change", function () {
-            const selectedOption = materialSelect.options[materialSelect.selectedIndex];
-            const qty = selectedOption.getAttribute("data-qty");
-            materialStockInput.value = qty;
-        });
-
-        // Menambahkan event listener untuk tombol Submit
-        const submitButton = document.getElementById("submit-button");
-        submitButton.addEventListener("click", function () {
+        if (isValid) {
             // Tampilkan SweetAlert sebelum mengirim formulir
             swal({
                 title: 'Mengirimkan...',
@@ -182,8 +193,8 @@
                         showConfirmButton: false,
                     });
 
-                    // Redirect ke halaman lain jika diperlukan
-                    // window.location.href = "/success-page";
+                    // Redirect ke halaman finishgood.index setelah menampilkan pesan sukses
+                    window.location.href = "{{ route('finishgood.index') }}";
                 },
                 error: function (xhr, status, error) {
                     var errorMessage = xhr.responseJSON.message;
@@ -197,6 +208,8 @@
                     });
                 },
             });
-        });
-    </script>
+        }
+    });
+</script>
+
 @endsection
