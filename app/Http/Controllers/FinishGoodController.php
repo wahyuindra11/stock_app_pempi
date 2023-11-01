@@ -38,9 +38,7 @@ class FinishGoodController extends Controller
         $product = ($id !== null) ? Product::find($id) : null;
         $products = Product::all();
         $category = Category::all();
-        return view('Finish_Good.create',[
-            // 'message' => 'harap isi bidang ini'
-        ], compact('product', 'products', 'category'));
+        return view('Finish_Good.create', compact('product', 'products', 'category'));
     }
 
     /**
