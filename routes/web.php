@@ -69,7 +69,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('/FinishGood', 'FinishGoodController@index')->name('finishgood.index');
 	Route::get('/api/products/{category_id}', 'FinishGoodController@apiProducts')->name('api.products.FinishGood');
-	Route::get('FinishGood/create-finish-good/', 'FinishGoodController@create')->name('create.finish.good');
+	Route::get('FinishGood/create-finish-good/{product_id}', 'FinishGoodController@create')->name('create.finish.good');
 	Route::post('/FinishGood', 'FinishGoodController@store');
 
 	Route::get('/accessories', [AccessoriesController::class, 'index'])->name('accessories.index');

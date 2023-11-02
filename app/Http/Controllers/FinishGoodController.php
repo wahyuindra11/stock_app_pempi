@@ -206,7 +206,7 @@ class FinishGoodController extends Controller
                 })
                 ->addColumn('action', function($product){
                     return 
-                    '<a href="' . route('create.finish.good') . '" class="btn btn-secondary btn-xs"><i class="glyphicon glyphicon-plus"></i><span class="text"> Create</a>' .
+                    '<a href="' . route('create.finish.good', ['product_id' => $product->id]) . '" class="btn btn-secondary btn-xs"><i class="glyphicon glyphicon-plus"></i><span class="text"> Create</a>' .
                         '<a onclick="editForm('. $product->id .')" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i> Edit</a> ' .
                         '<a onclick="deleteData('. $product->id .')" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
                 })

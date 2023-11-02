@@ -33,13 +33,7 @@
                                 <tr>
                                     <th scope="row">
                                         <div class="col-auto">
-                                            <select name="nama" class="form-control" required>
-                                                @foreach ($products as $product)
-                                                    @if ($product->category_id == 3)
-                                                        <option value="{{ $product->nama }}">{{ $product->nama }}</option>
-                                                    @endif
-                                                @endforeach
-                                            </select>
+                                            <input name="nama" type="text" class="form-control" value="{{ $product->nama }}">
                                         </div>
                                     </th>
                                     <td>
@@ -182,7 +176,7 @@
     const submitButton = document.getElementById("submit-button");
     submitButton.addEventListener("click", function () {
         // Cek apakah semua elemen input telah diisi
-        const namaInput = document.querySelector('select[name="nama"]');
+        const namaInput = document.querySelector('input[name="nama"]');
         const qtyInputs = document.querySelectorAll('input[name="qty[]"]');
         
         let isValid = true;
