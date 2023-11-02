@@ -49,28 +49,36 @@ class FinishGoodController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'nama' => 'required',
             'qty' => 'required|array',
-            'accessories_nama' => 'required',
-            'material_nama' => 'required'
+            'material' => 'required',
         ]);
 
-        try {
-            // Cari produk 'accessories' berdasarkan nama
-            $accessoriesProduct = Product::where('nama', $request->input('accessories_nama'))->first();
+        
 
-            if ($accessoriesProduct) {
-                $accessoriesProduct->qty -= $request->input('qty')[1];
-                $accessoriesProduct->save();
+        try {
+            // Cari produk 'material' berdasarkan nama
+            $material1 = Product::where('nama', $request->input('material')[0])->first();
+
+            if ($material1) {
+                $material1->qty -= $request->input('qty')[1];
+                $material1->save();
             }
 
-            // Cari produk 'material' berdasarkan nama
-            $materialProduct = Product::where('nama', $request->input('material_nama'))->first();
+            $material2 = Product::where('nama', $request->input('material')[1])->first();
 
-            if ($materialProduct) {
-                $materialProduct->qty -= $request->input('qty')[2];
-                $materialProduct->save();
+            if ($material2) {
+                $material2->qty -= $request->input('qty')[2];
+                $material2->save();
+            }
+
+            $material3 = Product::where('nama', $request->input('material')[2])->first();
+
+            if ($material3) {
+                $material3->qty -= $request->input('qty')[3];
+                $material3->save();
             }
 
             // Cari produk berdasarkan nama
@@ -83,7 +91,7 @@ class FinishGoodController extends Controller
                 // Jika produk dengan nama yang sama tidak ditemukan, buat produk baru
                 Product::create([
                     'nama' => $request->input('nama'),
-                    'qty' => $request->input('qty')[0], // Sesuaikan dengan indeks yang benar
+                    'qty' => $request->input('qty')[0],
                 ]);
             }
 
