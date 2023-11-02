@@ -49,58 +49,61 @@ class FinishGoodController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
         $request->validate([
             'nama' => 'required',
-            'qty' => 'required|array',
-            'material' => 'required',
+            'qty' => 'array',
+            'material' => 'array',
         ]);
-
-        
 
         try {
             // Cari produk 'material' berdasarkan nama
-            $material1 = Product::where('nama', $request->input('material')[0])->first();
+            if ($request->input('material')[0] && $request->input('qty')[1]) {
+                $material1 = Product::where('nama', $request->input('material')[0])->first();
 
-            if ($material1) {
-                $material1->qty -= $request->input('qty')[1];
-                $material1->save();
+                if ($material1) {
+                    $material1->qty -= $request->input('qty')[1];
+                    $material1->save();
+                }
             }
 
-            $material2 = Product::where('nama', $request->input('material')[1])->first();
+            if ($request->input('material')[1] && $request->input('qty')[2]) {
+                $material2 = Product::where('nama', $request->input('material')[1])->first();
 
-            if ($material2) {
-                $material2->qty -= $request->input('qty')[2];
-                $material2->save();
+                if ($material2) {
+                    $material2->qty -= $request->input('qty')[2];
+                    $material2->save();
+                }
             }
 
-            $material3 = Product::where('nama', $request->input('material')[2])->first();
+            if ($request->input('material')[2] && $request->input('qty')[3]) {
+                $material3 = Product::where('nama', $request->input('material')[2])->first();
 
-            if ($material3) {
-                $material3->qty -= $request->input('qty')[3];
-                $material3->save();
+                if ($material3) {
+                    $material3->qty -= $request->input('qty')[3];
+                    $material3->save();
+                }
             }
 
             // Cari produk berdasarkan nama
             $existingProduct = Product::where('nama', $request->input('nama'))->first();
 
-            if ($existingProduct) {
-                $existingProduct->qty += $request->input('qty')[0];
-                $existingProduct->save();
-            } else {
-                // Jika produk dengan nama yang sama tidak ditemukan, buat produk baru
-                Product::create([
-                    'nama' => $request->input('nama'),
-                    'qty' => $request->input('qty')[0],
-                ]);
+            if ($request->input('qty')[0]) {
+                if ($existingProduct) {
+                    $existingProduct->qty += $request->input('qty')[0];
+                    $existingProduct->save();
+                } else {
+                    // Jika produk dengan nama yang sama tidak ditemukan, buat produk baru
+                    Product::create([
+                        'nama' => $request->input('nama'),
+                        'qty' => $request->input('qty')[0],
+                    ]);
+                }
             }
 
             return response()->json([
                 'success' => true,
                 'message' => 'Product ' . ($existingProduct ? 'Updated' : 'Created')
             ]);
-
-        
 
         } catch (\Exception $e) {
             return response()->json([
@@ -109,6 +112,7 @@ class FinishGoodController extends Controller
             ]);
         }
     }
+
 
 
     

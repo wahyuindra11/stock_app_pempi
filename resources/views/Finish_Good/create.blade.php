@@ -177,7 +177,7 @@
     submitButton.addEventListener("click", function () {
         // Cek apakah semua elemen input telah diisi
         const namaInput = document.querySelector('input[name="nama"]');
-        const qtyInputs = document.querySelectorAll('input[name="qty[]"]');
+        // const qtyInputs = document.querySelectorAll('input[name="qty[]"]');
         
         let isValid = true;
         
@@ -186,12 +186,12 @@
             swal('Gagal!', 'Nama produk harus diisi.', 'error');
         }
         
-        qtyInputs.forEach((qtyInput, index) => {
-            if (!qtyInput.value) {
-                isValid = false;
-                swal('Gagal!', `Quantity harus diisi.`, 'error');
-            }
-        });
+        // qtyInputs.forEach((qtyInput, index) => {
+        //     if (!qtyInput.value) {
+        //         isValid = false;
+        //         swal('Gagal!', `Quantity dan Material Usage harus diisi.`, 'error');
+        //     }
+        // });
         
         if (isValid) {
             // Tampilkan SweetAlert sebelum mengirim formulir
