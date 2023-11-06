@@ -44,7 +44,10 @@ class ProductMasukController extends Controller
      */
     public function create()
     {
-        //
+        $products = Product::all();
+        $suppliers = Supplier::all();
+        
+        return view('product_masuk.create', compact('products', 'suppliers'));
     }
 
     /**

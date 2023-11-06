@@ -63,6 +63,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/apiProductsIn', 'ProductMasukController@apiProductsIn')->name('api.productsIn');
 	Route::get('/exportProductMasukAll', 'ProductMasukController@exportProductMasukAll')->name('exportPDF.productMasukAll');
 	Route::get('/exportProductMasukAllExcel', 'ProductMasukController@exportExcel')->name('exportExcel.productMasukAll');
+	Route::get('productsIn/create', 'ProductMasukController@create')->name('create.productsIn');
+	Route::post('/productsIn', 'ProductMasukController@store');
 
 	Route::resource('user', 'UserController');
 	Route::get('/apiUser', 'UserController@apiUsers')->name('api.users');
