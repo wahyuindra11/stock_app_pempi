@@ -57,7 +57,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/apiProductsOut', 'ProductKeluarController@apiProductsOut')->name('api.productsOut');
 	Route::get('/exportProductKeluarAll', 'ProductKeluarController@exportProductKeluarAll')->name('exportPDF.productKeluarAll');
 	Route::get('/exportProductKeluarAllExcel', 'ProductKeluarController@exportExcel')->name('exportExcel.productKeluarAll');
-	
+	Route::get('productsOut/create', 'ProductKeluarController@create')->name('create.productsOut');
+	Route::post('/productsOut', 'ProductKeluarController@store');
+
 
 	Route::resource('productsIn', 'ProductMasukController');
 	Route::get('/apiProductsIn', 'ProductMasukController@apiProductsIn')->name('api.productsIn');

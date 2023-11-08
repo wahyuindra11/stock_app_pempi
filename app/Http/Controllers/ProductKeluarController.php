@@ -49,8 +49,13 @@ class ProductKeluarController extends Controller
      */
     public function create()
     {
-        //
+        $products = Product::all();
+        $customers = Customer::all();
+        
+        return view('product_keluar.create', compact('products', 'customers'));
     }
+    
+        //
 
     /**
      * Store a newly created resource in storage.
@@ -59,6 +64,7 @@ class ProductKeluarController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
+
     {
         $this->validate($request, [
            'product_id'     => 'required',
@@ -66,6 +72,7 @@ class ProductKeluarController extends Controller
            'qty'            => 'required',
            'nomer_spb'      => 'required',
            'tanggal'        => 'required',
+           'keterangan'     => 'required',
            
         ]);
 
@@ -122,6 +129,7 @@ class ProductKeluarController extends Controller
             'nomer_spb'      => 'required',
             'tanggal'           => 'required'
         ]);
+        Product_Keluar::create($request->all());
 
         $product_keluar = Product_Keluar::findOrFail($id);
         $product_keluar->update($request->all());

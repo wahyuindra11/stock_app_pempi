@@ -19,7 +19,8 @@
         </div>
 
         <div class="box-header">
-            <a onclick="addForm()" class="btn btn-primary" >Add  material keluar</a>
+            {{-- <a onclick="addForm()" class="btn btn-primary" >Add  material keluar</a> --}}
+            <a href="{{ route('create.productsOut') }}" class="btn btn-primary">Add Material Out</a>
             <a href="{{ route('exportPDF.productKeluarAll') }}" class="btn btn-danger">Export PDF</a>
             <a href="{{ route('exportExcel.productKeluarAll') }}" class="btn btn-success">Export Excel</a>
         </div>
