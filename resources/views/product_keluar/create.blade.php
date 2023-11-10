@@ -130,7 +130,7 @@
                                     </tr>
                                         <td>
                                             <div class="col-auto">
-                                                <label>Finish Good</label>
+                                                <label>FinishGood</label>
                                             </div>
                                         </td>
                                         <td>

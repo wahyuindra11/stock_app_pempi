@@ -58,20 +58,62 @@ class ProductMasukController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $this->validate($request, [
-            'product_id'     => 'required',
-            'supplier_id'    => 'required',
-            'qty'            => 'required',
-            'tanggal'        => 'required',
-            'harga_beli'     => 'required'
+            'product_id'     => 'required|array',
+            'suppliers'      => 'required|array',
+            'qty'            => 'required|array',
+            'tanggal'        => 'required|array',
+            'harga_beli'     => 'required|array'
         ]);
+    
+        foreach ($request->input("product_id") as $key => $product_id) {
+            Product_Masuk::create([
+                'product_id'   => $product_id,
+                'supplier_id'  => $request->input('suppliers')[$key],
+                'qty'          => $request->input('qty')[$key],
+                'tanggal'      => $request->input('tanggal')[$key],
+                'harga_beli'   => $request->input('harga_beli')[$key]
+            ]);
+    
+            $product = Product::findOrFail($product_id);
+            $product->qty += $request->input('qty')[$key];
+            $product->harga_beli = $request->input('harga_beli')[$key];
+            $product->save();
+        }
+        
 
-        Product_Masuk::create($request->all());
+        // $productsCount = count($request->input('product_id')); // Menghitung jumlah elemen dalam array
 
-        $product = Product::findOrFail($request->product_id);
-        $product->qty += $request->qty;
-        $product->harga_beli = $request->input('harga_beli');
-        $product->save();
+        // for ($i = 0; $i < $productsCount; $i++) {
+        //     $product_id = $request->input('product_id')[$i];
+        //     $supplier_id = $request->input('supplier_id')[$i];
+        //     $qty = $request->input('qty')[$i];
+        //     $tanggal = $request->input('tanggal')[$i];
+        //     $harga_beli = $request->input('harga_beli')[$i];
+
+        //     $input = new Product_Masuk();
+        //     $input->product_id = $product_id;
+        //     $input->supplier_id = $supplier_id;
+        //     $input->qty = $qty;
+        //     $input->tanggal = $tanggal;
+        //     $input->harga_beli = $harga_beli;
+        //     $input->save();
+
+        //     $product = Product::findOrFail($product_id);
+        //     $product->qty += $qty;
+        //     $product->harga_beli = $harga_beli;
+        //     $product->save();
+        // }
+
+        // foreach($request->input("suppliers") as $data) {
+        // Product_Masuk::create($data);
+
+        // $product = Product::findOrFail($data["product_id"]);
+        // $product->qty += $data["qty"];
+        // $product->harga_beli = $data["harga_beli"];
+        // $product->save();
+        // }
 
         return response()->json([
             'success'    => true,
