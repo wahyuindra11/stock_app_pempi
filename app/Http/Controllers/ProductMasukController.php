@@ -117,7 +117,7 @@ class ProductMasukController extends Controller
 
         return response()->json([
             'success'    => true,
-            'message'    => 'Products In Created'
+            'message'    => 'Produk telah di tambahkan'
         ]);
 
     }
