@@ -40,10 +40,10 @@
                                         </td>
                                         <td>
                                             <div class="col-auto">
-                                                <select name="accessories" id="" class="form-control">
+                                                <select name="product_id[]" id="" class="form-control">
                                                     @foreach ($products as $product)
                                                         @if ($product->category_id == 1)
-                                                            <option value="{{ $product->nama }}">{{ $product->nama }}</option>
+                                                            <option value="{{ $product->id }}">{{ $product->nama }}</option>
                                                         @endif
                                                     @endforeach
                                                 </select>
@@ -51,9 +51,9 @@
                                         </td>
                                         <td>
                                             <div class="col-auto">
-                                                <select name="customer[]" id="" class="form-control">
+                                                <select name="customer_id[]" id="" class="form-control">
                                                     @foreach ($customers as $customer)
-                                                        <option value="{{ $customer->nama }}">{{ $customer->nama }}</option>
+                                                        <option value="{{ $customer->id }}">{{ $customer->nama }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -65,12 +65,12 @@
                                         </td>
                                         <td>
                                             <div class="col-auto">
-                                                <input name="nomor_spb[]" type="text" class="form-control" required>
+                                                <input name="nomer_spb[]" type="text" class="form-control" required>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="col-auto">
-                                                <input data-date-format='yyyy-mm-dd' type="text" class="form-control" id="tanggal" name="tanggal"   required>
+                                                <input data-date-format='yyyy-mm-dd' type="text" class="form-control" id="tanggal" name="tanggal[]"   required>
                                             </div>
                                         </td>
                                         <td>
@@ -89,10 +89,10 @@
                                         </td>
                                         <td>
                                             <div class="col-auto">
-                                                <select name="material" id="" class="form-control">
+                                                <select name="product_id[]" id="" class="form-control">
                                                     @foreach ($products as $product)
                                                         @if ($product->category_id == 2)
-                                                            <option value="{{ $product->nama }}">{{ $product->nama }}</option>
+                                                            <option value="{{ $product->id }}">{{ $product->nama }}</option>
                                                         @endif
                                                     @endforeach
                                                 </select>
@@ -100,9 +100,9 @@
                                         </td>
                                         <td>
                                             <div class="col-auto">
-                                                <select name="customer[]" id="" class="form-control">
+                                                <select name="customer_id[]" id="" class="form-control">
                                                     @foreach ($customers as $customer)
-                                                        <option value="{{ $customer->nama }}">{{ $customer->nama }}</option>
+                                                        <option value="{{ $customer->id }}">{{ $customer->nama }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -114,12 +114,12 @@
                                         </td>
                                         <td>
                                             <div class="col-auto">
-                                                <input name="nomor_spb[]" type="text" class="form-control" required>
+                                                <input name="nomer_spb[]" type="text" class="form-control" required>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="col-auto">
-                                                <input data-date-format='yyyy-mm-dd' type="text" class="form-control" id="tanggal1" name="tanggal" required >
+                                                <input data-date-format='yyyy-mm-dd' type="text" class="form-control" id="tanggal1" name="tanggal[]" required >
                                             </div>
                                         </td>
                                         <td>
@@ -135,10 +135,10 @@
                                         </td>
                                         <td>
                                             <div class="col-auto">
-                                                <select name="FinisGood" id="" class="form-control">
+                                                <select name="product_id[]" id="" class="form-control">
                                                     @foreach ($products as $product)
                                                         @if ($product->category_id == 3)
-                                                            <option value="{{ $product->nama }}">{{ $product->nama }}</option>
+                                                            <option value="{{ $product->id }}">{{ $product->nama }}</option>
                                                         @endif
                                                     @endforeach
                                                 </select>
@@ -146,9 +146,9 @@
                                         </td>
                                         <td>
                                             <div class="col-auto">
-                                                <select name="customer[]" id="" class="form-control">
+                                                <select name="customer_id[]" id="" class="form-control">
                                                     @foreach ($customers as $customer)
-                                                        <option value="{{ $customer->nama }}">{{ $customer->nama }}</option>
+                                                        <option value="{{ $customer->id }}">{{ $customer->nama }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -160,12 +160,12 @@
                                         </td>
                                         <td>
                                             <div class="col-auto">
-                                                <input name="nomor_spb[]" type="text" class="form-control" required>
+                                                <input name="nomer_spb[]" type="text" class="form-control" required>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="col-auto">
-                                                <input data-date-format='yyyy-mm-dd' type="text" class="form-control" id="tanggal2" name="tanggal" required >
+                                                <input data-date-format='yyyy-mm-dd' type="text" class="form-control" id="tanggal2" name="tanggal[]" required >
                                             </div>
                                         </td>
                                         <td>
@@ -228,53 +228,62 @@
         })   
         });
 </script>
-{{-- <script>
-    // Menambahkan event listener untuk setiap elemen select
-    const material1Select = document.getElementById("material1");
-    const material2Select = document.getElementById("material2");
-    const material3Select = document.getElementById("material3");
-    const material1StockInput = document.getElementById("material1_stock");
-    const material2StockInput = document.getElementById("material2_stock");
-    const material3StockInput = document.getElementById("material3_stock");
-
-    material1Select.addEventListener("change", function () {
-        const selectedOption = material1Select.options[material1Select.selectedIndex];
-        const qty = selectedOption.getAttribute("data-qty");
-        material1StockInput.value = qty;
-    });
-
-    material2Select.addEventListener("change", function () {
-        const selectedOption = material2Select.options[material2Select.selectedIndex];
-        const qty = selectedOption.getAttribute("data-qty");
-        material2StockInput.value = qty;
-    });
-
-    material3Select.addEventListener("change", function () {
-        const selectedOption = material3Select.options[material3Select.selectedIndex];
-        const qty = selectedOption.getAttribute("data-qty");
-        material3StockInput.value = qty;
-    });
-
+<script>
     // Menambahkan event listener untuk tombol Submit
     const submitButton = document.getElementById("submit-button");
     submitButton.addEventListener("click", function () {
         // Cek apakah semua elemen input telah diisi
-        const namaInput = document.querySelector('input[name="nama"]');
-        // const qtyInputs = document.querySelectorAll('input[name="qty[]"]');
+        // const namaInput = document.querySelector('input[name="nama"]');
+        const product_idInputs = document.querySelectorAll('select[name="product_id[]"]');
+        const customer_idInputs = document.querySelectorAll('select[name="customer_id[]"]');
+        const qtyInputs = document.querySelectorAll('input[name="qty[]"]');
+        const nomer_spbInputs = document.querySelectorAll('input[name="nomer_spb[]"]');
+        const tanggalInputs = document.querySelectorAll('input[name="tanggal[]"]');
+        const keteranganInputs = document.querySelectorAll('input[name="keterangan[]"]');
         
         let isValid = true;
         
-        if (!namaInput.value) {
-            isValid = false;
-            swal('Gagal!', 'Nama produk harus diisi.', 'error');
-        }
+        // if (!namaInput.value) {
+        //     isValid = false;
+        //     swal('Gagal!', 'Nama produk harus diisi.', 'error');
+        // }
         
-        // qtyInputs.forEach((qtyInput, index) => {
-        //     if (!qtyInput.value) {
-        //         isValid = false;
-        //         swal('Gagal!', `Quantity dan Material Usage harus diisi.`, 'error');
-        //     }
-        // });
+        keteranganInputs.forEach((keteranganInputs, index) => {
+            if (!keteranganInputs.value) {
+                isValid = false;
+                swal('Gagal!', `keterangan harus diisi.`, 'error');
+            }
+        });
+        tanggalInputs.forEach((tanggalInputs, index) => {
+            if (!tanggalInputs.value) {
+                isValid = false;
+                swal('Gagal!', `Tanggal masuk harus diisi.`, 'error');
+            }
+        });
+        nomer_spbInputs.forEach((nomer_spbInputs, index) => {
+            if (!nomer_spbInputs.value) {
+                isValid = false;
+                swal('Gagal!', `Nomor spb harus diisi.`, 'error');
+            }
+        });
+        qtyInputs.forEach((qtyInput, index) => {
+            if (!qtyInput.value) {
+                isValid = false;
+                swal('Gagal!', `Quantity harus diisi.`, 'error');
+            }
+        });
+        customer_idInputs.forEach((customer_idInputs, index) => {
+            if (!customer_idInputs.value) {
+                isValid = false;
+                swal('Gagal!', `Customer harus diisi.`, 'error');
+            }
+        });
+        product_idInputs.forEach((product_idInputs, index) => {
+            if (!product_idInputs.value) {
+                isValid = false;
+                swal('Gagal!', `Nama produk harus diisi.`, 'error');
+            }
+        });
         
         if (isValid) {
             // Tampilkan SweetAlert sebelum mengirim formulir
@@ -287,7 +296,7 @@
         
             // Kirim formulir menggunakan AJAX
             $.ajax({
-                url: "/FinishGood", // Ganti dengan URL yang sesuai
+                url: "/productsOut", // Ganti dengan URL yang sesuai
                 type: "POST",
                 data: $('#form-item').serialize(), // Ambil data formulir
                 success: function (data) {
@@ -300,7 +309,7 @@
                     });
         
                     // Redirect ke halaman finishgood.index setelah menampilkan pesan sukses
-                    window.location.href = "{{ route('finishgood.index') }}";
+                    window.location.href = "/productsOut";
                 },
                 error: function (xhr, status, error) {
                     var errorMessage = xhr.responseJSON.message;
@@ -317,6 +326,6 @@
         }
     });
 
-</script> --}}
+</script>
 
 @endsection

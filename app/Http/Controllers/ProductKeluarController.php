@@ -66,22 +66,38 @@ class ProductKeluarController extends Controller
     public function store(Request $request)
 
     {
+        // dd($request->all());
         $this->validate($request, [
-           'product_id'     => 'required',
-           'customer_id'    => 'required',
-           'qty'            => 'required',
-           'nomer_spb'      => 'required',
-           'tanggal'        => 'required',
-           'keterangan'     => 'required',
+           'product_id'     => 'required|array',
+           'customer_id'    => 'required|array',
+           'qty'            => 'required|array',
+           'nomer_spb'      => 'required|array',
+           'tanggal'        => 'required|array',
+           'keterangan'     => 'required|array',
            
         ]);
 
-        Product_Keluar::create($request->all());
+        foreach ($request->product_id as $key => $productId) {
+            Product_Keluar::create([
+                'product_id' => $productId,
+                'customer_id' => $request->customer_id[$key],
+                'qty' => $request->qty[$key],
+                'nomer_spb' => $request->nomer_spb[$key],
+                'tanggal' => $request->tanggal[$key],
+                'keterangan' => $request->keterangan[$key],
+            ]);
+    
+            $product = Product::findOrFail($productId);
+            $product->qty -= $request->input('qty')[$key];
+            $product->save();
+        }
 
-        $product = Product::findOrFail($request->product_id);
+        // Product_Keluar::create($request->all());
+
+        // $product = Product::findOrFail($request->product_id);
         
-        $product->qty -= $request->qty;
-        $product->save();
+        // $product->qty -= $request->qty;
+        // $product->save();
 
         return response()->json([
             'success'    => true,

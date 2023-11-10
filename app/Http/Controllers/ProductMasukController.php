@@ -82,39 +82,6 @@ class ProductMasukController extends Controller
             $product->save();
         }
         
-
-        // $productsCount = count($request->input('product_id')); // Menghitung jumlah elemen dalam array
-
-        // for ($i = 0; $i < $productsCount; $i++) {
-        //     $product_id = $request->input('product_id')[$i];
-        //     $supplier_id = $request->input('supplier_id')[$i];
-        //     $qty = $request->input('qty')[$i];
-        //     $tanggal = $request->input('tanggal')[$i];
-        //     $harga_beli = $request->input('harga_beli')[$i];
-
-        //     $input = new Product_Masuk();
-        //     $input->product_id = $product_id;
-        //     $input->supplier_id = $supplier_id;
-        //     $input->qty = $qty;
-        //     $input->tanggal = $tanggal;
-        //     $input->harga_beli = $harga_beli;
-        //     $input->save();
-
-        //     $product = Product::findOrFail($product_id);
-        //     $product->qty += $qty;
-        //     $product->harga_beli = $harga_beli;
-        //     $product->save();
-        // }
-
-        // foreach($request->input("suppliers") as $data) {
-        // Product_Masuk::create($data);
-
-        // $product = Product::findOrFail($data["product_id"]);
-        // $product->qty += $data["qty"];
-        // $product->harga_beli = $data["harga_beli"];
-        // $product->save();
-        // }
-
         return response()->json([
             'success'    => true,
             'message'    => 'Produk telah di tambahkan'
