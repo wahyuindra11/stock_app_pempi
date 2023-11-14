@@ -29,6 +29,7 @@
                                         <th scope="col">nomor spb</th>
                                         <th scope="col">Tanggal Pembelian</th>
                                         <th scope="col">Keterangan</th>
+                                        <th scope="col"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -40,7 +41,8 @@
                                         </td>
                                         <td>
                                             <div class="col-auto">
-                                                <select name="product_id[]" id="" class="form-control">
+                                                <select name="product_id[]" id="" class="form-control select" required>
+                                                    <option value="" disabled selected>-- Choose Product --</option>
                                                     @foreach ($products as $product)
                                                         @if ($product->category_id == 1)
                                                             <option value="{{ $product->id }}">{{ $product->nama }}</option>
@@ -51,7 +53,8 @@
                                         </td>
                                         <td>
                                             <div class="col-auto">
-                                                <select name="customer_id[]" id="" class="form-control">
+                                                <select name="customer_id[]" id="" class="form-control" required>
+                                                    <option value="" disabled selected>-- Choose Customer --</option>
                                                     @foreach ($customers as $customer)
                                                         <option value="{{ $customer->id }}">{{ $customer->nama }}</option>
                                                     @endforeach
@@ -78,7 +81,11 @@
                                                 <input name="keterangan[]" type="text" class="form-control" required>
                                             </div>
                                         </td>
-                                        
+                                        <td>
+                                            <div class="col-auto">
+                                                <input type="checkbox" class="isi-checkbox" checked>
+                                            </div>
+                                        </td>
                                     </tr>
                                     <hr>
                                     <tr>
@@ -89,7 +96,8 @@
                                         </td>
                                         <td>
                                             <div class="col-auto">
-                                                <select name="product_id[]" id="" class="form-control">
+                                                <select name="product_id[]" id="" class="form-control select" required>
+                                                    <option value="" disabled selected>-- Choose Product --</option>
                                                     @foreach ($products as $product)
                                                         @if ($product->category_id == 2)
                                                             <option value="{{ $product->id }}">{{ $product->nama }}</option>
@@ -100,7 +108,8 @@
                                         </td>
                                         <td>
                                             <div class="col-auto">
-                                                <select name="customer_id[]" id="" class="form-control">
+                                                <select name="customer_id[]" id="" class="form-control" required>
+                                                    <option value="" disabled selected>-- Choose Customer --</option>>
                                                     @foreach ($customers as $customer)
                                                         <option value="{{ $customer->id }}">{{ $customer->nama }}</option>
                                                     @endforeach
@@ -127,6 +136,11 @@
                                                 <input name="keterangan[]" type="text" class="form-control" required>
                                             </div>
                                         </td>
+                                        <td>
+                                            <div class="col-auto">
+                                                <input type="checkbox" class="isi-checkbox" checked>
+                                            </div>
+                                        </td>
                                     </tr>
                                         <td>
                                             <div class="col-auto">
@@ -135,18 +149,20 @@
                                         </td>
                                         <td>
                                             <div class="col-auto">
-                                                <select name="product_id[]" id="" class="form-control">
+                                                <select name="product_id[]" id="" class="form-control select" required>
+                                                    <option value="" disabled selected>-- Choose Product --</option>
                                                     @foreach ($products as $product)
                                                         @if ($product->category_id == 3)
                                                             <option value="{{ $product->id }}">{{ $product->nama }}</option>
                                                         @endif
                                                     @endforeach
                                                 </select>
-                                            </div>
+                                            </div>                                            
                                         </td>
                                         <td>
                                             <div class="col-auto">
-                                                <select name="customer_id[]" id="" class="form-control">
+                                                <select name="customer_id[]" id="" class="form-control" required>
+                                                    <option value="" disabled selected>-- Choose Customer --</option>
                                                     @foreach ($customers as $customer)
                                                         <option value="{{ $customer->id }}">{{ $customer->nama }}</option>
                                                     @endforeach
@@ -173,6 +189,12 @@
                                                 <input name="keterangan[]" type="text" class="form-control" required>
                                             </div>
                                         </td>
+                                        <td>
+                                            <div class="col-auto">
+                                                <input type="checkbox" class="isi-checkbox" checked>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -180,7 +202,7 @@
                     <!-- /.box-body -->
                 </div>
                 <div class="modal-footer">
-                    <button type="button" id="submit-button" class="btn btn-primary">Add</button>
+                    <button type="submit" id="submit-button" class="btn btn-primary">Add</button>
                 </div>
             </form>
         </div>
@@ -227,104 +249,64 @@
             // dateFormat: 'yy-mm-dd'
         })   
         });
+
+        $(".isi-checkbox").on("change", function () {
+            const row = $(this).closest("tr");
+            const inputFields = row.find("input:not(:checkbox), select");
+
+            if (this.checked) {
+                inputFields.prop("disabled", false);
+            } else {
+                inputFields.prop("disabled", true);
+            }
+        });
 </script>
 <script>
-    // Menambahkan event listener untuk tombol Submit
-    const submitButton = document.getElementById("submit-button");
-    submitButton.addEventListener("click", function () {
-        // Cek apakah semua elemen input telah diisi
-        // const namaInput = document.querySelector('input[name="nama"]');
-        const product_idInputs = document.querySelectorAll('select[name="product_id[]"]');
-        const customer_idInputs = document.querySelectorAll('select[name="customer_id[]"]');
-        const qtyInputs = document.querySelectorAll('input[name="qty[]"]');
-        const nomer_spbInputs = document.querySelectorAll('input[name="nomer_spb[]"]');
-        const tanggalInputs = document.querySelectorAll('input[name="tanggal[]"]');
-        const keteranganInputs = document.querySelectorAll('input[name="keterangan[]"]');
-        
-        let isValid = true;
-        
-        // if (!namaInput.value) {
-        //     isValid = false;
-        //     swal('Gagal!', 'Nama produk harus diisi.', 'error');
-        // }
-        
-        keteranganInputs.forEach((keteranganInputs, index) => {
-            if (!keteranganInputs.value) {
-                isValid = false;
-                swal('Gagal!', `keterangan harus diisi.`, 'error');
-            }
+   // Tunggu hingga halaman sepenuhnya dimuat
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("form-item");
+    form.addEventListener("submit", function (event) {
+        event.preventDefault(); // Mencegah tindakan submit bawaan
+
+        // Tampilkan SweetAlert sebelum mengirim formulir
+        swal({
+            title: 'Mengirimkan...',
+            text: 'Sedang memproses data...',
+            type: 'info',
+            showConfirmButton: false,
         });
-        tanggalInputs.forEach((tanggalInputs, index) => {
-            if (!tanggalInputs.value) {
-                isValid = false;
-                swal('Gagal!', `Tanggal masuk harus diisi.`, 'error');
-            }
+
+        // Kirim formulir menggunakan AJAX
+        $.ajax({
+            url: "/productsOut", // Ganti dengan URL yang sesuai
+            type: "POST",
+            data: $(form).serialize(), // Ambil data formulir
+            success: function (data) {
+                swal({
+                    title: 'Berhasil!',
+                    text: data.message, // Gunakan pesan dari respons
+                    type: 'success',
+                    timer: 1500,
+                    showConfirmButton: false,
+                });
+
+                // Redirect ke halaman finishgood.index setelah menampilkan pesan sukses
+                window.location.href = "/productsOut";
+            },
+            error: function (xhr, status, error) {
+                var errorMessage = xhr.responseJSON.message;
+
+                swal({
+                    title: 'Gagal!',
+                    text: errorMessage, // Gunakan pesan error dari respons JSON
+                    type: 'error',
+                    timer: 1500,
+                    showConfirmButton: false,
+                });
+            },
         });
-        nomer_spbInputs.forEach((nomer_spbInputs, index) => {
-            if (!nomer_spbInputs.value) {
-                isValid = false;
-                swal('Gagal!', `Nomor spb harus diisi.`, 'error');
-            }
-        });
-        qtyInputs.forEach((qtyInput, index) => {
-            if (!qtyInput.value) {
-                isValid = false;
-                swal('Gagal!', `Quantity harus diisi.`, 'error');
-            }
-        });
-        customer_idInputs.forEach((customer_idInputs, index) => {
-            if (!customer_idInputs.value) {
-                isValid = false;
-                swal('Gagal!', `Customer harus diisi.`, 'error');
-            }
-        });
-        product_idInputs.forEach((product_idInputs, index) => {
-            if (!product_idInputs.value) {
-                isValid = false;
-                swal('Gagal!', `Nama produk harus diisi.`, 'error');
-            }
-        });
-        
-        if (isValid) {
-            // Tampilkan SweetAlert sebelum mengirim formulir
-            swal({
-                title: 'Mengirimkan...',
-                text: 'Sedang memproses data...',
-                type: 'info',
-                showConfirmButton: false,
-            });
-        
-            // Kirim formulir menggunakan AJAX
-            $.ajax({
-                url: "/productsOut", // Ganti dengan URL yang sesuai
-                type: "POST",
-                data: $('#form-item').serialize(), // Ambil data formulir
-                success: function (data) {
-                    swal({
-                        title: 'Berhasil!',
-                        text: data.message, // Gunakan pesan dari respons
-                        type: 'success',
-                        timer: 1500,
-                        showConfirmButton: false,
-                    });
-        
-                    // Redirect ke halaman finishgood.index setelah menampilkan pesan sukses
-                    window.location.href = "/productsOut";
-                },
-                error: function (xhr, status, error) {
-                    var errorMessage = xhr.responseJSON.message;
-        
-                    swal({
-                        title: 'Gagal!',
-                        text: errorMessage, // Gunakan pesan error dari respons JSON
-                        type: 'error',
-                        timer: 1500,
-                        showConfirmButton: false,
-                    });
-                },
-            });
-        }
     });
+});
 
 </script>
 

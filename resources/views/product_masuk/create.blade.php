@@ -28,6 +28,7 @@
                                         <th scope="col">Quantity</th>
                                         <th scope="col">Tanggal Masuk</th>
                                         <th scope="col">Harga Beli</th>
+                                        <th scope="col"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -40,6 +41,7 @@
                                         <td>
                                             <div class="col-auto">
                                                 <select name="product_id[]" id="" class="form-control">
+                                                    <option value="" disabled selected> -- Pilih Acessories-- </option>
                                                     @foreach ($products as $product)
                                                         @if ($product->category_id == 1)
                                                             <option value="{{ $product->id }}">{{ $product->nama }}</option>
@@ -73,6 +75,11 @@
                                                 <input name="harga_beli[]" type="text" class="form-control" required>
                                             </div>
                                         </td>
+                                        <td>
+                                            <div class="col-auto">
+                                                <input type="checkbox" class="isi-checkbox" checked>
+                                            </div>
+                                        </td>
                                     </tr>
                                     <hr>
                                     <tr>
@@ -84,6 +91,7 @@
                                         <td>
                                             <div class="col-auto">
                                                 <select name="product_id[]" id="" class="form-control">
+                                                    <option value="" disabled selected> -- Pilih Material -- </option>
                                                     @foreach ($products as $product)
                                                         @if ($product->category_id == 2)
                                                             <option value="{{ $product->id }}">{{ $product->nama }}</option>
@@ -117,6 +125,11 @@
                                                 <input name="harga_beli[]" type="text" class="form-control" required>
                                             </div>
                                         </td>
+                                        <td>
+                                            <div class="col-auto">
+                                                <input type="checkbox" class="isi-checkbox" checked>
+                                            </div>
+                                        </td>
                                     </tr>
                                     
                                 </tbody>
@@ -126,7 +139,7 @@
                     <!-- /.box-body -->
                 </div>
                 <div class="modal-footer">
-                    <button type="button" id="submit-button" class="btn btn-primary">Add</button>
+                    <button type="submit" id="submit-button" class="btn btn-primary">Add</button>
                 </div>
             </form>
         </div>
@@ -164,99 +177,65 @@
             // dateFormat: 'yy-mm-dd'
             
         });
+        $(".isi-checkbox").on("change", function () {
+            const row = $(this).closest("tr");
+            const inputFields = row.find("input:not(:checkbox), select");
+
+            if (this.checked) {
+                inputFields.prop("disabled", false);
+            } else {
+                inputFields.prop("disabled", true);
+            }
+        });
     });
     })
 </script>
 <script>
-    // Menambahkan event listener untuk tombol Submit
-    const submitButton = document.getElementById("submit-button");
-    submitButton.addEventListener("click", function () {
-        // Cek apakah semua elemen input telah diisi
-        // const namaInput = document.querySelector('input[name="nama"]');
-        const productsInputs = document.querySelectorAll('select[name="product_id[]"]');
-        const suppliersInputs = document.querySelectorAll('select[name="suppliers[]"]');
-        const qtyInputs = document.querySelectorAll('input[name="qty[]"]');
-        const tanggalInputs = document.querySelectorAll('input[name="tanggal[]"]');
-        const harga_beliInputs = document.querySelectorAll('input[name="harga_beli[]"]');
-        
-        let isValid = true;
-        
-        // if (!namaInput.value) {
-        //     isValid = false;
-        //     swal('Gagal!', 'Nama produk harus diisi.', 'error');
-        // }
-        
-        productsInputs.forEach((productsInputs, index) => {
-            if (!productsInputs.value) {
-                isValid = false;
-                swal('Gagal!', `Nama Material dan Accessories Harus Diisi`, 'error');
-            }
+   // Tunggu hingga halaman sepenuhnya dimuat
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("form-item");
+    form.addEventListener("submit", function (event) {
+        event.preventDefault(); // Mencegah tindakan submit bawaan
+
+        // Tampilkan SweetAlert sebelum mengirim formulir
+        swal({
+            title: 'Mengirimkan...',
+            text: 'Sedang memproses data...',
+            type: 'info',
+            showConfirmButton: false,
         });
-        suppliersInputs.forEach((suppliersInputs, index) => {
-            if (!suppliersInputs.value) {
-                isValid = false;
-                swal('Gagal!', `Supplier harus diisi.`, 'error');
-            }
+
+        // Kirim formulir menggunakan AJAX
+        $.ajax({
+            url: "/productsOut", // Ganti dengan URL yang sesuai
+            type: "POST",
+            data: $(form).serialize(), // Ambil data formulir
+            success: function (data) {
+                swal({
+                    title: 'Berhasil!',
+                    text: data.message, // Gunakan pesan dari respons
+                    type: 'success',
+                    timer: 1500,
+                    showConfirmButton: false,
+                });
+
+                // Redirect ke halaman finishgood.index setelah menampilkan pesan sukses
+                window.location.href = "/productsOut";
+            },
+            error: function (xhr, status, error) {
+                var errorMessage = xhr.responseJSON.message;
+
+                swal({
+                    title: 'Gagal!',
+                    text: errorMessage, // Gunakan pesan error dari respons JSON
+                    type: 'error',
+                    timer: 1500,
+                    showConfirmButton: false,
+                });
+            },
         });
-        qtyInputs.forEach((qtyInput, index) => {
-            if (!qtyInput.value) {
-                isValid = false;
-                swal('Gagal!', `Quantity harus diisi.`, 'error');
-            }
-        });
-        tanggalInputs.forEach((tanggalInputs, index) => {
-            if (!tanggalInputs.value) {
-                isValid = false;
-                swal('Gagal!', `Tanggal masuk harus diisi.`, 'error');
-            }
-        });
-        harga_beliInputs.forEach((harga_beliInputs, index) => {
-            if (!harga_beliInputs.value) {
-                isValid = false;
-                swal('Gagal!', `Harga beli harus diisi.`, 'error');
-            }
-        });
-        
-        if (isValid) {
-            // Tampilkan SweetAlert sebelum mengirim formulir
-            swal({
-                title: 'Mengirimkan...',
-                text: 'Sedang memproses data...',
-                type: 'info',
-                showConfirmButton: false,
-            });
-        
-            // Kirim formulir menggunakan AJAX
-            $.ajax({
-                url: "/productsIn", // Ganti dengan URL yang sesuai
-                type: "POST",
-                data: $('#form-item').serialize(), // Ambil data formulir
-                success: function (data) {
-                    swal({
-                        title: 'Berhasil!',
-                        text: data.message, // Gunakan pesan dari respons
-                        type: 'success',
-                        timer: 1500,
-                        showConfirmButton: false,
-                    });
-        
-                    // Redirect ke halaman finishgood.index setelah menampilkan pesan sukses
-                    window.location.href = "/productsIn";
-                },
-                error: function (xhr, status, error) {
-                    var errorMessage = xhr.responseJSON.message;
-        
-                    swal({
-                        title: 'Gagal!',
-                        text: errorMessage, // Gunakan pesan error dari respons JSON
-                        type: 'error',
-                        timer: 1500,
-                        showConfirmButton: false,
-                    });
-                },
-            });
-        }
     });
+});
 
 </script>
 
