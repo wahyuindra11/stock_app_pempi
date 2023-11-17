@@ -220,7 +220,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
 
                 // Redirect ke halaman finishgood.index setelah menampilkan pesan sukses
-                window.location.href = "/productsin";
+                window.location.href = "/productsIn";
             },
             error: function (xhr, status, error) {
                 var errorMessage = xhr.responseJSON.message;
