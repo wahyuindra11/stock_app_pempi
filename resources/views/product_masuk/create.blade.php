@@ -207,7 +207,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Kirim formulir menggunakan AJAX
         $.ajax({
-            url: "/productsOut", // Ganti dengan URL yang sesuai
+            url: "/productsIn", // Ganti dengan URL yang sesuai
             type: "POST",
             data: $(form).serialize(), // Ambil data formulir
             success: function (data) {
@@ -220,7 +220,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
 
                 // Redirect ke halaman finishgood.index setelah menampilkan pesan sukses
-                window.location.href = "/productsOut";
+                window.location.href = "/productsin";
             },
             error: function (xhr, status, error) {
                 var errorMessage = xhr.responseJSON.message;
