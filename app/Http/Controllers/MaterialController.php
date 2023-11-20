@@ -23,7 +23,7 @@ class MaterialController extends Controller
         $category = Category::where('id', 2)->get()->pluck('name','id');
         $producs = Product::where('category_id', 2)->get();
 
-        return view('material.index', compact('category', 'producs'));
+        return view('Material.index', compact('category', 'producs'));
     }
 
     /**
