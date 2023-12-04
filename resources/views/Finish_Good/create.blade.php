@@ -22,115 +22,118 @@
                                 <h3 class="box-title" style="font-weight:600">Produk yang akan dibuat</h3>
                             </div>
                             <hr>
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Quantity</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <th scope="row">
-                                        <div class="col-auto">
-                                            <input name="nama" type="text" class="form-control" value="{{ $product->nama }}">
-                                        </div>
-                                    </th>
-                                    <td>
-                                        <div class="col-auto">
-                                            <input name="qty[]" type="text" class="form-control"  required>
-                                        </div>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Quantity</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <th scope="row">
+                                            <div class="col-auto">
+                                                <input name="nama" type="text" class="form-control" value="{{ $product->nama }}">
+                                            </div>
+                                        </th>
+                                        <td>
+                                            <div class="col-auto">
+                                                <input name="qty[]" type="text" class="form-control"  required>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         <div class="modal-body">
                             <div class="box-header">
                                 <h3 class="box-title" style="font-weight:600">Material yang digunakan</h3>
                             </div>
                             <hr>
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Material Name</th>
-                                        <th scope="col">Material Stock</th>
-                                        <th scope="col">Material Usage</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <div class="col-auto">
-                                                <select name="material[]" id="material1" class="form-control" required>
-                                                    @foreach ($products as $product)
-                                                        @if ($product->category_id == 2)
-                                                            <option value="{{ $product->nama }}" data-qty="{{ $product->qty }}">{{ $product->nama }}</option>
-                                                        @endif
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-auto">
-                                                <input type="text" class="form-control" id="material1_stock" disabled>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-auto">
-                                                <input name="qty[]" type="text" class="form-control" required>
-                                                
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="col-auto">
-                                                <select name="material[]" id="material2" class="form-control" required>
-                                                    @foreach ($products as $product)
-                                                        @if ($product->category_id == 2)
-                                                            <option value="{{ $product->nama }}" data-qty="{{ $product->qty }}">{{ $product->nama }}</option>
-                                                        @endif
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-auto">
-                                                <input type="text" class="form-control" id="material2_stock" disabled>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-auto">
-                                                <input name="qty[]" type="text" class="form-control" required>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="col-auto">
-                                                <select name="material[]" id="material3" class="form-control" required>
-                                                    @foreach ($products as $product)
-                                                        @if ($product->category_id == 2)
-                                                            <option value="{{ $product->nama }}" data-qty="{{ $product->qty }}">{{ $product->nama }}</option>
-                                                        @endif
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-auto">
-                                                <input type="text" class="form-control" id="material3_stock" disabled>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-auto">
-                                                <input name="qty[]" type="text" class="form-control" required>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Material Name</th>
+                                            <th scope="col">Material Stock</th>
+                                            <th scope="col">Material Usage</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="col-auto">
+                                                    <select name="material[]" id="material1" class="form-control" required>
+                                                        @foreach ($products as $product)
+                                                            @if ($product->category_id == 2)
+                                                                <option value="{{ $product->id }}" data-qty="{{ $product->qty }}">{{ $product->nama }}</option>
+                                                            @endif
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="col-auto">
+                                                    <input type="text" class="form-control" id="material1_stock" disabled>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="col-auto">
+                                                    <input name="qty[]" type="text" class="form-control" required>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="col-auto">
+                                                    <select name="material[]" id="material2" class="form-control" required>
+                                                        @foreach ($products as $product)
+                                                            @if ($product->category_id == 2)
+                                                                <option value="{{ $product->id }}" data-qty="{{ $product->qty }}">{{ $product->nama }}</option>
+                                                            @endif
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="col-auto">
+                                                    <input type="text" class="form-control" id="material2_stock" disabled>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="col-auto">
+                                                    <input name="qty[]" type="text" class="form-control" required>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="col-auto">
+                                                    <select name="material[]" id="material3" class="form-control" required>
+                                                        @foreach ($products as $product)
+                                                            @if ($product->category_id == 2)
+                                                                <option value="{{ $product->id }}" data-qty="{{ $product->qty }}">{{ $product->nama }}</option>
+                                                            @endif
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="col-auto">
+                                                    <input type="text" class="form-control" id="material3_stock" disabled>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="col-auto">
+                                                    <input name="qty[]" type="text" class="form-control" required>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                     <!-- /.box-body -->
@@ -195,6 +198,7 @@
         
         if (isValid) {
             // Tampilkan SweetAlert sebelum mengirim formulir
+            
             swal({
                 title: 'Mengirimkan...',
                 text: 'Sedang memproses data...',
@@ -212,7 +216,7 @@
                         title: 'Berhasil!',
                         text: data.message, // Gunakan pesan dari respons
                         type: 'success',
-                        timer: 1500,
+                        timer: 1500000,
                         showConfirmButton: false,
                     });
         
@@ -226,7 +230,7 @@
                         title: 'Gagal!',
                         text: errorMessage, // Gunakan pesan error dari respons JSON
                         type: 'error',
-                        timer: 1500,
+                        timer: 1500000000,
                         showConfirmButton: false,
                     });
                 },

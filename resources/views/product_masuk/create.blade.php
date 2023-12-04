@@ -18,122 +18,123 @@
                 <div class="modal-body">
                     <div class="box-body">
                         <div class="modal-body">
-                            
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Category</th>
-                                        <th scope="col">Nama</th>
-                                        <th scope="col">Supplier</th>
-                                        <th scope="col">Quantity</th>
-                                        <th scope="col">Tanggal Masuk</th>
-                                        <th scope="col">Harga Beli</th>
-                                        <th scope="col"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <div class="col-auto">
-                                                <label>Acessories</label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-auto">
-                                                <select name="product_id[]" id="" class="form-control">
-                                                    <option value="" disabled selected> -- Pilih Acessories-- </option>
-                                                    @foreach ($products as $product)
-                                                        @if ($product->category_id == 1)
-                                                            <option value="{{ $product->id }}">{{ $product->nama }}</option>
-                                                        @endif
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-auto">
-                                                <select name="suppliers[]" id="" class="form-control">
-                                                    <option value="" disabled selected> -- Pilih Supplier -- </option>
-                                                    @foreach ($suppliers as $supplier)
-                                                            <option value="{{ $supplier->id }}">{{ $supplier->nama }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-auto">
-                                                <input name="qty[]" type="text" class="form-control" required>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-auto">
-                                                <input data-date-format='yyyy-mm-dd' type="text" class="form-control" id="tanggal" name="tanggal[]"   required>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-auto">
-                                                <input name="harga_beli[]" type="text" class="form-control" required>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-auto">
-                                                <input type="checkbox" class="isi-checkbox" checked>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <hr>
-                                    <tr>
-                                        <td>
-                                            <div class="col-auto">
-                                                <label>Material</label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-auto">
-                                                <select name="product_id[]" id="" class="form-control">
-                                                    <option value="" disabled selected> -- Pilih Material -- </option>
-                                                    @foreach ($products as $product)
-                                                        @if ($product->category_id == 2)
-                                                            <option value="{{ $product->id }}">{{ $product->nama }}</option>
-                                                        @endif
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-auto">
-                                                <select name="suppliers[]" id="" class="form-control">
-                                                    <option value="" disabled selected> -- Pilih Supplier -- </option>
-                                                    @foreach ($suppliers as $supplier)
-                                                        <option value="{{ $supplier->id }}">{{ $supplier->nama }} </option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-auto">
-                                                <input name="qty[]" type="text" class="form-control" required>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-auto">
-                                                <input data-date-format='yyyy-mm-dd' type="text" class="form-control" id="tanggal1" name="tanggal[]" required >
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-auto">
-                                                <input name="harga_beli[]" type="text" class="form-control" required>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-auto">
-                                                <input type="checkbox" class="isi-checkbox" checked>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    
-                                </tbody>
-                            </table>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Category</th>
+                                            <th scope="col">Nama</th>
+                                            <th scope="col">Supplier</th>
+                                            <th scope="col">Quantity</th>
+                                            <th scope="col">Tanggal Masuk</th>
+                                            <th scope="col">Harga Beli</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="col-auto">
+                                                    <label>Acessories</label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="col-auto">
+                                                    <select name="product_id[]" id="" class="form-control">
+                                                        <option value="" disabled selected> -- Pilih Acessories-- </option>
+                                                        @foreach ($products as $product)
+                                                            @if ($product->category_id == 1)
+                                                                <option value="{{ $product->id }}">{{ $product->nama }}</option>
+                                                            @endif
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="col-auto">
+                                                    <select name="suppliers[]" id="" class="form-control">
+                                                        <option value="" disabled selected> -- Pilih Supplier -- </option>
+                                                        @foreach ($suppliers as $supplier)
+                                                                <option value="{{ $supplier->id }}">{{ $supplier->nama }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="col-auto">
+                                                    <input name="qty[]" type="text" class="form-control" required>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="col-auto">
+                                                    <input data-date-format='yyyy-mm-dd' type="text" class="form-control" id="tanggal" name="tanggal[]"   required>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="col-auto">
+                                                    <input name="harga_beli[]" type="text" class="form-control" required>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="col-auto">
+                                                    <input type="checkbox" class="isi-checkbox" checked>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <hr>
+                                        <tr>
+                                            <td>
+                                                <div class="col-auto">
+                                                    <label>Material</label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="col-auto">
+                                                    <select name="product_id[]" id="" class="form-control">
+                                                        <option value="" disabled selected> -- Pilih Material -- </option>
+                                                        @foreach ($products as $product)
+                                                            @if ($product->category_id == 2)
+                                                                <option value="{{ $product->id }}">{{ $product->nama }}</option>
+                                                            @endif
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="col-auto">
+                                                    <select name="suppliers[]" id="" class="form-control">
+                                                        <option value="" disabled selected> -- Pilih Supplier -- </option>
+                                                        @foreach ($suppliers as $supplier)
+                                                            <option value="{{ $supplier->id }}">{{ $supplier->nama }} </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="col-auto">
+                                                    <input name="qty[]" type="text" class="form-control" required>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="col-auto">
+                                                    <input data-date-format='yyyy-mm-dd' type="text" class="form-control" id="tanggal1" name="tanggal[]" required >
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="col-auto">
+                                                    <input name="harga_beli[]" type="text" class="form-control" required>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="col-auto">
+                                                    <input type="checkbox" class="isi-checkbox" checked>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                     <!-- /.box-body -->

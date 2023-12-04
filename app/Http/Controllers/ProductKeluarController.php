@@ -179,14 +179,14 @@ class ProductKeluarController extends Controller
 
 
     public function apiProductsOut(){
-        $product = Product_Keluar::all();
+        $product = Product_Keluar::with('product', 'customer')->get();
 
         return Datatables::of($product)
             ->addColumn('products_name', function ($product){
-                return $product->product->nama;
+                return $product->product->nama ?? '';
             })
             ->addColumn('customer_name', function ($product){
-                return $product->customer->nama;
+                return $product->customer->nama ?? '';
             })
             ->addColumn('action', function($product){
                 return 

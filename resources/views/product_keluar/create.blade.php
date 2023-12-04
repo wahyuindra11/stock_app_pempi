@@ -18,185 +18,186 @@
                 <div class="modal-body">
                     <div class="box-body">
                         <div class="modal-body">
-                            
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Category</th>
-                                        <th scope="col">Nama</th>
-                                        <th scope="col">Customer</th>
-                                        <th scope="col">Quantity</th>
-                                        <th scope="col">nomor spb</th>
-                                        <th scope="col">Tanggal Pembelian</th>
-                                        <th scope="col">Keterangan</th>
-                                        <th scope="col"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <div class="col-auto">
-                                                <label>Acessories</label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-auto">
-                                                <select name="product_id[]" id="" class="form-control select" required>
-                                                    <option value="" disabled selected>-- Choose Product --</option>
-                                                    @foreach ($products as $product)
-                                                        @if ($product->category_id == 1)
-                                                            <option value="{{ $product->id }}">{{ $product->nama }}</option>
-                                                        @endif
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-auto">
-                                                <select name="customer_id[]" id="" class="form-control" required>
-                                                    <option value="" disabled selected>-- Choose Customer --</option>
-                                                    @foreach ($customers as $customer)
-                                                        <option value="{{ $customer->id }}">{{ $customer->nama }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-auto">
-                                                <input name="qty[]" type="text" class="form-control" required>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-auto">
-                                                <input name="nomer_spb[]" type="text" class="form-control" required>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-auto">
-                                                <input data-date-format='yyyy-mm-dd' type="text" class="form-control" id="tanggal" name="tanggal[]"   required>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-auto">
-                                                <input name="keterangan[]" type="text" class="form-control" required>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-auto">
-                                                <input type="checkbox" class="isi-checkbox" checked>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <hr>
-                                    <tr>
-                                        <td>
-                                            <div class="col-auto">
-                                                <label>Material</label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-auto">
-                                                <select name="product_id[]" id="" class="form-control select" required>
-                                                    <option value="" disabled selected>-- Choose Product --</option>
-                                                    @foreach ($products as $product)
-                                                        @if ($product->category_id == 2)
-                                                            <option value="{{ $product->id }}">{{ $product->nama }}</option>
-                                                        @endif
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-auto">
-                                                <select name="customer_id[]" id="" class="form-control" required>
-                                                    <option value="" disabled selected>-- Choose Customer --</option>>
-                                                    @foreach ($customers as $customer)
-                                                        <option value="{{ $customer->id }}">{{ $customer->nama }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-auto">
-                                                <input name="qty[]" type="text" class="form-control" required>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-auto">
-                                                <input name="nomer_spb[]" type="text" class="form-control" required>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-auto">
-                                                <input data-date-format='yyyy-mm-dd' type="text" class="form-control" id="tanggal1" name="tanggal[]" required >
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-auto">
-                                                <input name="keterangan[]" type="text" class="form-control" required>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-auto">
-                                                <input type="checkbox" class="isi-checkbox" checked>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                        <td>
-                                            <div class="col-auto">
-                                                <label>FinishGood</label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-auto">
-                                                <select name="product_id[]" id="" class="form-control select" required>
-                                                    <option value="" disabled selected>-- Choose Product --</option>
-                                                    @foreach ($products as $product)
-                                                        @if ($product->category_id == 3)
-                                                            <option value="{{ $product->id }}">{{ $product->nama }}</option>
-                                                        @endif
-                                                    @endforeach
-                                                </select>
-                                            </div>                                            
-                                        </td>
-                                        <td>
-                                            <div class="col-auto">
-                                                <select name="customer_id[]" id="" class="form-control" required>
-                                                    <option value="" disabled selected>-- Choose Customer --</option>
-                                                    @foreach ($customers as $customer)
-                                                        <option value="{{ $customer->id }}">{{ $customer->nama }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-auto">
-                                                <input name="qty[]" type="text" class="form-control" required>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-auto">
-                                                <input name="nomer_spb[]" type="text" class="form-control" required>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-auto">
-                                                <input data-date-format='yyyy-mm-dd' type="text" class="form-control" id="tanggal2" name="tanggal[]" required >
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-auto">
-                                                <input name="keterangan[]" type="text" class="form-control" required>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-auto">
-                                                <input type="checkbox" class="isi-checkbox" checked>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Category</th>
+                                            <th scope="col">Nama</th>
+                                            <th scope="col">Customer</th>
+                                            <th scope="col">Quantity</th>
+                                            <th scope="col">nomor spb</th>
+                                            <th scope="col">Tanggal Pembelian</th>
+                                            <th scope="col">Keterangan</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="col-auto">
+                                                    <label>Acessories</label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="col-auto">
+                                                    <select name="product_id[]" id="" class="form-control select" required>
+                                                        <option value="" disabled selected>-- Choose Product --</option>
+                                                        @foreach ($products as $product)
+                                                            @if ($product->category_id == 1)
+                                                                <option value="{{ $product->id }}">{{ $product->nama }}</option>
+                                                            @endif
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="col-auto">
+                                                    <select name="customer_id[]" id="" class="form-control" required>
+                                                        <option value="" disabled selected>-- Choose Customer --</option>
+                                                        @foreach ($customers as $customer)
+                                                            <option value="{{ $customer->id }}">{{ $customer->nama }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="col-auto">
+                                                    <input name="qty[]" type="text" class="form-control" required>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="col-auto">
+                                                    <input name="nomer_spb[]" type="text" class="form-control" required>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="col-auto">
+                                                    <input data-date-format='yyyy-mm-dd' type="text" class="form-control" id="tanggal" name="tanggal[]"   required>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="col-auto">
+                                                    <input name="keterangan[]" type="text" class="form-control" required>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="col-auto">
+                                                    <input type="checkbox" class="isi-checkbox" checked>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <hr>
+                                        <tr>
+                                            <td>
+                                                <div class="col-auto">
+                                                    <label>Material</label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="col-auto">
+                                                    <select name="product_id[]" id="" class="form-control select" required>
+                                                        <option value="" disabled selected>-- Choose Product --</option>
+                                                        @foreach ($products as $product)
+                                                            @if ($product->category_id == 2)
+                                                                <option value="{{ $product->id }}">{{ $product->nama }}</option>
+                                                            @endif
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="col-auto">
+                                                    <select name="customer_id[]" id="" class="form-control" required>
+                                                        <option value="" disabled selected>-- Choose Customer --</option>>
+                                                        @foreach ($customers as $customer)
+                                                            <option value="{{ $customer->id }}">{{ $customer->nama }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="col-auto">
+                                                    <input name="qty[]" type="text" class="form-control" required>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="col-auto">
+                                                    <input name="nomer_spb[]" type="text" class="form-control" required>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="col-auto">
+                                                    <input data-date-format='yyyy-mm-dd' type="text" class="form-control" id="tanggal1" name="tanggal[]" required >
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="col-auto">
+                                                    <input name="keterangan[]" type="text" class="form-control" required>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="col-auto">
+                                                    <input type="checkbox" class="isi-checkbox" checked>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                            <td>
+                                                <div class="col-auto">
+                                                    <label>FinishGood</label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="col-auto">
+                                                    <select name="product_id[]" id="" class="form-control select" required>
+                                                        <option value="" disabled selected>-- Choose Product --</option>
+                                                        @foreach ($products as $product)
+                                                            @if ($product->category_id == 3)
+                                                                <option value="{{ $product->id }}">{{ $product->nama }}</option>
+                                                            @endif
+                                                        @endforeach
+                                                    </select>
+                                                </div>                                            
+                                            </td>
+                                            <td>
+                                                <div class="col-auto">
+                                                    <select name="customer_id[]" id="" class="form-control" required>
+                                                        <option value="" disabled selected>-- Choose Customer --</option>
+                                                        @foreach ($customers as $customer)
+                                                            <option value="{{ $customer->id }}">{{ $customer->nama }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="col-auto">
+                                                    <input name="qty[]" type="text" class="form-control" required>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="col-auto">
+                                                    <input name="nomer_spb[]" type="text" class="form-control" required>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="col-auto">
+                                                    <input data-date-format='yyyy-mm-dd' type="text" class="form-control" id="tanggal2" name="tanggal[]" required >
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="col-auto">
+                                                    <input name="keterangan[]" type="text" class="form-control" required>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="col-auto">
+                                                    <input type="checkbox" class="isi-checkbox" checked>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                     <!-- /.box-body -->

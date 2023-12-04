@@ -29,7 +29,7 @@
                 <div class="auth-box ">
                         <div class="content">
                             <div class="header">
-                                <div class="logo text-center"><img src="{{asset('assets/img/logo.png')}}" alt="PemapiLogo"></div>
+                                <div class="logo text-center"><img src="{{ asset('Logo.png') }}" alt="PemapiLogo"></div>
                                 <p class="lead">Sign in to Start Your Session</p>
                             </div>
                             <form class="form-auth-small" method="POST" action="{{ route('login') }}">

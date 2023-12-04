@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Pemapistock</title>
-    <link rel="icon" type="image/png" sizes="96x96" href="{{asset('assets/img/pemapi.png')}}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{asset('pemapi.png')}}">
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -68,9 +68,9 @@
         <!-- Logo -->
         <a href="/home" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b><img src="assets/img/logo.png" alt=""></span>
+            <span class="logo-mini"><b><img src="{{ asset('Logo.png') }}" alt=""></span>
             <!-- logo for regular state and mobile devices -->
-            <img src="{{asset('assets/img/logo.png')}}">
+            <img src="{{ asset('Logo.png') }}">
             <span class="logo-lg"><b>PEMAPI</b>STOCK</span>
         </a>
 

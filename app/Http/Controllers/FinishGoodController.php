@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Product;
+use App\Product_Keluar;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
@@ -49,6 +50,7 @@ class FinishGoodController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'nama' => 'required',
             'qty' => 'array',
@@ -57,48 +59,90 @@ class FinishGoodController extends Controller
 
         try {
             // Cari produk 'material' berdasarkan nama
-            if ($request->input('material')[0] && $request->input('qty')[1]) {
-                $material1 = Product::where('nama', $request->input('material')[0])->first();
-
-                if ($material1) {
-                    $material1->qty -= $request->input('qty')[1];
-                    $material1->save();
+            foreach($request->input('material') as $index => $materialName){
+                // cek 'N2'
+                if($materialName == 161){
+                    // entri N2 ke tabel product_keluar
+                    Product_Keluar::create([
+                        'product_id' => $materialName,
+                        'qty' => $request->input('qty')[$index + 1],
+                        'keterangan' => 'Finish Good'
+                    ]);
+                    // kurangi stock material
+                    $qtyIndex = $index + 1;
+                    $material = Product::where('id', $materialName)->first();
+                    
+                    if($material){
+                        $material->qty -= $request->input('qty')[$qtyIndex];
+                        $material->save();
+                    }
+                } else {
+                    // kurangi stock material
+                    $qtyIndex = $index + 1;
+                    $material = Product::where('id', $materialName)->first();
+                    
+                    if($material){
+                        $material->qty -= $request->input('qty')[$qtyIndex];
+                        $material->save();
+                    }
                 }
             }
 
-            if ($request->input('material')[1] && $request->input('qty')[2]) {
-                $material2 = Product::where('nama', $request->input('material')[1])->first();
-
-                if ($material2) {
-                    $material2->qty -= $request->input('qty')[2];
-                    $material2->save();
-                }
-            }
-
-            if ($request->input('material')[2] && $request->input('qty')[3]) {
-                $material3 = Product::where('nama', $request->input('material')[2])->first();
-
-                if ($material3) {
-                    $material3->qty -= $request->input('qty')[3];
-                    $material3->save();
-                }
-            }
-
-            // Cari produk berdasarkan nama
             $existingProduct = Product::where('nama', $request->input('nama'))->first();
 
-            if ($request->input('qty')[0]) {
-                if ($existingProduct) {
+            if($request->input('qty')[0]){
+                if($existingProduct){
                     $existingProduct->qty += $request->input('qty')[0];
                     $existingProduct->save();
-                } else {
-                    // Jika produk dengan nama yang sama tidak ditemukan, buat produk baru
+                } else{
                     Product::create([
                         'nama' => $request->input('nama'),
-                        'qty' => $request->input('qty')[0],
+                        'qty' => $request->input('qty')[0]
                     ]);
                 }
             }
+            // if ($request->input('material')[0] && $request->input('qty')[1]) {
+            //     $material1 = Product::where('nama', $request->input('material')[0])->first();
+
+            //     if ($material1) {
+            //         $material1->qty -= $request->input('qty')[1];
+            //         $material1->save();
+            //     }
+            // }
+
+            // if ($request->input('material')[1] && $request->input('qty')[2]) {
+            //     $material2 = Product::where('nama', $request->input('material')[1])->first();
+
+            //     if ($material2) {
+            //         $material2->qty -= $request->input('qty')[2];
+            //         $material2->save();
+            //     }
+            // }
+
+            // if ($request->input('material')[2] && $request->input('qty')[3]) {
+            //     $material3 = Product::where('nama', $request->input('material')[2])->first();
+
+            //     if ($material3) {
+            //         $material3->qty -= $request->input('qty')[3];
+            //         $material3->save();
+            //     }
+            // }
+
+            // // Cari produk berdasarkan nama
+            // $existingProduct = Product::where('nama', $request->input('nama'))->first();
+
+            // if ($request->input('qty')[0]) {
+            //     if ($existingProduct) {
+            //         $existingProduct->qty += $request->input('qty')[0];
+            //         $existingProduct->save();
+            //     } else {
+            //         // Jika produk dengan nama yang sama tidak ditemukan, buat produk baru
+            //         Product::create([
+            //             'nama' => $request->input('nama'),
+            //             'qty' => $request->input('qty')[0],
+            //         ]);
+            //     }
+            // }
 
             return response()->json([
                 'success' => true,
