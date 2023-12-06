@@ -145,7 +145,7 @@ class ProductKeluarController extends Controller
             'nomer_spb'      => 'required',
             'tanggal'           => 'required'
         ]);
-        Product_Keluar::create($request->all());
+        
 
         $product_keluar = Product_Keluar::findOrFail($id);
         $product_keluar->update($request->all());
