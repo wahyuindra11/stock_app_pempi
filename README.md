@@ -1,3 +1,9 @@
+# Stockapp Pemapi
+![alt text](![Screenshot (144)](https://github.com/wahyuindra11/stock_app_pempi/assets/117348907/dfe97377-e024-40f6-a36c-03214bf85ee7)
+)
+
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
